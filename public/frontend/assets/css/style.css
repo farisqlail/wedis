@@ -382,10 +382,10 @@ section {
   font-weight: 700;
   color: #012970;
 }
-.hero h2 {
+.hero h3 {
   color: #444444;
   margin: 15px 0 0 0;
-  font-size: 26px;
+  font-size: 24px;
   font-family: "Open Sans", sans-serif;
 }
 .hero .btn-get-started {

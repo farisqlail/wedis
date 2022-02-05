@@ -1,5 +1,7 @@
 @extends('frontend.layouts.app')
 
+@section('title', 'Wedis | IT Project Solutions')
+
 @section('content')
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="hero d-flex align-items-center">
@@ -8,7 +10,7 @@
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center">
           <h1 data-aos="fade-up">IT Project Solutions</h1>
-          <h2 data-aos="fade-up" data-aos-delay="400">We are team of talented designers making websites with Bootstrap</h2>
+          <h3 data-aos="fade-up" data-aos-delay="400">Wedis is a service provider <br> to help complete your IT projects.</h3>
           <div data-aos="fade-up" data-aos-delay="600">
             <div class="text-center text-lg-start">
               <a href="#about" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
