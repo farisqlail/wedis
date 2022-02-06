@@ -36,10 +36,10 @@
   
             <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
               <div class="content">
-                <h3>Who We Are</h3>
-                <h2>Expedita voluptas omnis cupiditate totam eveniet nobis sint iste. Dolores est repellat corrupti reprehenderit.</h2>
+                {{-- <h3>Who We Are</h3> --}}
+                <h2>What is Wedis ?</h2>
                 <p>
-                  Quisquam vel ut sint cum eos hic dolores aperiam. Sed deserunt et. Inventore et et dolor consequatur itaque ut voluptate sed et. Magnam nam ipsum tenetur suscipit voluptatum nam et est corrupti.
+                  Wedis is the solution to your IT problems and is engaged in IT services and design which was founded in 2021. We always try to provide the best service for you.
                 </p>
                 <div class="text-center text-lg-start">
                   <a href="#" class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center">
@@ -111,8 +111,8 @@
               <div class="count-box">
                 <i class="bi bi-emoji-smile"></i>
                 <div>
-                  <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-                  <p>Happy Clients</p>
+                  <span data-purecounter-start="0" data-purecounter-end="7" data-purecounter-duration="1" class="purecounter"></span>
+                  <p>Clients</p>
                 </div>
               </div>
             </div>
@@ -121,7 +121,7 @@
               <div class="count-box">
                 <i class="bi bi-journal-richtext" style="color: #ee6c20;"></i>
                 <div>
-                  <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+                  <span data-purecounter-start="0" data-purecounter-end="16" data-purecounter-duration="1" class="purecounter"></span>
                   <p>Projects</p>
                 </div>
               </div>
@@ -131,18 +131,18 @@
               <div class="count-box">
                 <i class="bi bi-headset" style="color: #15be56;"></i>
                 <div>
-                  <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-                  <p>Hours Of Support</p>
+                  <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1" class="purecounter"></span>
+                  <p>Support</p>
                 </div>
               </div>
             </div>
   
             <div class="col-lg-3 col-md-6">
               <div class="count-box">
-                <i class="bi bi-people" style="color: #bb0852;"></i>
+                <i class="bi bi-bug" style="color: #bb0852;"></i>
                 <div>
-                  <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-                  <p>Hard Workers</p>
+                  <span data-purecounter-start="0" data-purecounter-end="200" data-purecounter-duration="1" class="purecounter"></span>
+                  <p>Bugs</p>
                 </div>
               </div>
             </div>
@@ -152,7 +152,7 @@
         </div>
       </section><!-- End Counts Section -->
   
-      <!-- ======= Features Section ======= -->
+      {{-- <!-- ======= Features Section ======= -->
       <section id="features" class="features">
   
         <div class="container" data-aos="fade-up">
@@ -361,7 +361,7 @@
   
         </div>
   
-      </section><!-- End Features Section -->
+      </section><!-- End Features Section --> --}}
   
       <!-- ======= Services Section ======= -->
       <section id="services" class="services">
@@ -370,62 +370,46 @@
   
           <header class="section-header">
             <h2>Services</h2>
-            <p>Veritatis et dolores facere numquam et praesentium</p>
+            <p>What we do ?</p>
           </header>
   
           <div class="row gy-4">
   
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
               <div class="service-box blue">
-                <i class="ri-discuss-line icon"></i>
-                <h3>Nesciunt Mete</h3>
-                <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
-                <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
+                <i class="bi bi-laptop icon"></i>
+                <h3>Website Development</h3>
+                <p>We help complete website creation according to client requests</p>
+                {{-- <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a> --}}
               </div>
             </div>
   
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
               <div class="service-box orange">
-                <i class="ri-discuss-line icon"></i>
-                <h3>Eosle Commodi</h3>
-                <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
-                <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
+                <i class="bi bi-phone icon"></i>
+                <h3>Mobile Development</h3>
+                <p>We help complete mobile apps creation according to client requests</p>
+                {{-- <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a> --}}
               </div>
             </div>
   
             <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
               <div class="service-box green">
-                <i class="ri-discuss-line icon"></i>
-                <h3>Ledo Markt</h3>
-                <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
-                <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
+                <i class="bi bi-window-split icon"></i>
+                <h3>UI/UX</h3>
+                <p>We help complete design UI/UX creation according to client requests</p>
+                {{-- <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a> --}}
               </div>
             </div>
   
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-              <div class="service-box red">
-                <i class="ri-discuss-line icon"></i>
-                <h3>Asperiores Commodi</h3>
-                <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
-                <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-              </div>
-            </div>
-  
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-              <div class="service-box purple">
-                <i class="ri-discuss-line icon"></i>
-                <h3>Velit Doloremque.</h3>
-                <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
-                <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-              </div>
-            </div>
-  
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="700">
-              <div class="service-box pink">
-                <i class="ri-discuss-line icon"></i>
-                <h3>Dolori Architecto</h3>
-                <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-                <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
+            <div class="d-flex justify-content-center">
+              <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                <div class="service-box red">
+                  <i class="bi bi-easel2-fill icon"></i>
+                  <h3>Design Graphic</h3>
+                  <p>We help complete desain graphic creation according to client requests</p>
+                  {{-- <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a> --}}
+                </div>
               </div>
             </div>
   
