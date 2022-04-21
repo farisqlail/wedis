@@ -14,18 +14,18 @@ class VerifyCsrfToken extends Middleware
 
     protected $except = [
         //Blogs
-        'http://localhost:8000/admin/blog/store',
-        'http://localhost:8000/admin/blog/update/*',
-        'http://localhost:8000/admin/blog/delete/*',
+        'http://localhost:8000/blog/store',
+        'http://localhost:8000/blog/update/*',
+        'http://localhost:8000/blog/delete/*',
 
         //Category
-        'http://localhost:8000/admin/category/store',
-        'http://localhost:8000/admin/category/update/*',
-        'http://localhost:8000/admin/category/delete/*',
+        'http://localhost:8000/category/store',
+        'http://localhost:8000/category/update/*',
+        'http://localhost:8000/category/delete/*',
 
         //Portfolio
-        'http://localhost:8000/admin/portfolio/store',
-        'http://localhost:8000/admin/portfolio/update/*',
-        'http://localhost:8000/admin/portfolio/delete/*',
+        'http://localhost:8000/portfolio/store',
+        'http://localhost:8000/portfolio/update/*',
+        'http://localhost:8000/portfolio/delete/*',
     ];
 }

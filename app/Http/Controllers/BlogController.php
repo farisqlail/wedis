@@ -175,7 +175,7 @@ class BlogController extends Controller
         $response = [
             'success' => true,
             'message' => 'Berhasil menghapus data blog',
-            'data' => $blog,
+            'data' => [],
         ];
 
         return response()->json($response, 200);

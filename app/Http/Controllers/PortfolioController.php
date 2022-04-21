@@ -169,7 +169,7 @@ class PortfolioController extends Controller
         $response = [
             'success' => true,
             'message' => 'Berhasil menghapus data portfolio',
-            'data' => $portfolio,
+            'data' => [],
         ];
 
         return response()->json($response, 200);

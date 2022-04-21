@@ -149,7 +149,7 @@ class CategoryController extends Controller
         $response = [
             'success' => true,
             'message' => 'Berhasil menghapus data category',
-            'data' => $category,
+            'data' => [],
         ];
 
         return response()->json($response, 200);
