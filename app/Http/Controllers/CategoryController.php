@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Category;
 class CategoryController extends Controller
 {
     /**
@@ -13,7 +17,15 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $category = Category::all();
+
+        $response = [
+            'success' => true,
+            'message' => 'Berhasil mengambil data category',
+            'data' => $category,
+        ];
+
+        return response()->json($response, 200);
     }
 
     /**
@@ -34,7 +46,33 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'category_name' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            $response = [
+                'success' => false,
+                'message' => 'Gagal menambahkan data category',
+            ];
+
+            return response()->json($response, 200);
+        } else {
+
+            $category = new Category;
+
+            $category->category_name = $request->category_name;
+
+            $category->save();
+
+            $response = [
+                'success' => true,
+                'message' => 'Berhasil menambahkan data category',
+                'data' => $category,
+            ];
+
+            return response()->json($response, 200);
+        }
     }
 
     /**
@@ -68,7 +106,33 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'category_name' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            $response = [
+                'success' => false,
+                'message' => 'Gagal mengedit data category',
+            ];
+
+            return response()->json($response, 200);
+        } else {
+
+            $category = Category::findOrFail($id);
+
+            $category->category_name = $request->category_name;
+
+            $category->save();
+
+            $response = [
+                'success' => true,
+                'message' => 'Berhasil mrngrdit data category',
+                'data' => $category,
+            ];
+
+            return response()->json($response, 200);
+        }
     }
 
     /**
@@ -79,6 +143,15 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+
+        $response = [
+            'success' => true,
+            'message' => 'Berhasil menghapus data category',
+            'data' => $category,
+        ];
+
+        return response()->json($response, 200);
     }
 }
