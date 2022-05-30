@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Admin;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,8 +15,9 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-            AdminTableSeeder::class,
-            UsersSeeder::class,
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt(12345678)
         ]);
     }
 }
