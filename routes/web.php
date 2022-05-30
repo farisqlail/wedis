@@ -1,24 +1,33 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PortfolioController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\AdminAuthController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
 
-// Route::middleware('auth:sanctum')->group( function () {
+Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// Route::controller(AuthController::class)->group(function(){
+//     Route::post('register', 'register');
+//     Route::post('login', 'login');
 // });
 
 
-Route::controller(AuthController::class)->group(function(){
-    Route::post('register', 'register');
-    Route::post('login', 'login');
-});
+
+Route::get('admin/login', [AdminAuthController::class, 'getLogin'])->name('admin.login');
+Route::post('admin/login', [AdminAuthController::class, 'postLogin'])->name('admin.login.post');
+// Route::middleware('auth:admin')->group(function(){
+//   });
 
 Route::group(
     [
@@ -57,3 +66,5 @@ Route::group(
         Route::get('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
     }
 );
+
+
