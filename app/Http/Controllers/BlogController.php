@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Facade\FlareClient\Http\Response;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Blog;
 
 class BlogController extends Controller
@@ -26,7 +26,9 @@ class BlogController extends Controller
             'data' => $blog,
         ];
 
-        return response()->json($response, 200);
+        return view('admin.blogs.index', [
+            'blog' => $blog
+        ]);
     }
 
     /**
@@ -36,7 +38,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.blogs.create');
     }
 
     /**
@@ -64,25 +66,22 @@ class BlogController extends Controller
             return response()->json($response, 400);
         } else {
 
-            $blog = new Blog;
-            
-            $blog->title = $request->title;
-            $blog->slug = $request->slug;
-            $blog->description = $request->description;
-            $blog->image = $request->image;
+            try {
+                $blog = new Blog;
 
-            $blog->save();
+                $blog->title = $request->title;
+                $blog->slug = $request->slug;
+                $blog->description = $request->description;
+                $blog->image = $request->image->store('blogs');
 
-            $response = [
-                'success' => true,
-                'message' => 'Berhasil menambahkan data blog',
-                'data' => $blog,
-            ];
+                $blog->save();
 
-            return response()->json($response, 200);
+            } catch (\Throwable $th) {
+                throw $th;
+            }
+
+            return redirect()->route('blog.admin');
         }
-
-
     }
 
     /**
@@ -112,7 +111,11 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $blog = Blog::findOrFail($id);
+
+        return view('admin.blogs.edit', [
+            'blog' => $blog
+        ]);
     }
 
     /**
@@ -141,24 +144,22 @@ class BlogController extends Controller
             return response()->json($response, 400);
         } else {
 
-            $blog = Blog::findOrFail($id);
+            try {
+                $blog = Blog::findOrFail($id);
             
-            $blog->title = $request->title;
-            $blog->slug = $request->slug;
-            $blog->description = $request->description;
-            $blog->image = $request->image;
+                $blog->title = $request->title;
+                $blog->slug = $request->slug;
+                $blog->description = $request->description;
+                $blog->image = $request->image->store('blogs');
+    
+                $blog->save();
 
-            $blog->save();
+            } catch (\Throwable $th) {
+                throw $th;
+            }
 
-            $response = [
-                'success' => true,
-                'message' => 'Berhasil mengedit data blog',
-                'data' => $blog,
-            ];
-
-            return response()->json($response, 200);
+            return redirect()->route('blog.admin');
         }
-
     }
 
     /**
@@ -178,6 +179,6 @@ class BlogController extends Controller
             'data' => [],
         ];
 
-        return response()->json($response, 200);
+        return redirect()->back();
     }
 }
