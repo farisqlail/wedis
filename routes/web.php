@@ -19,16 +19,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(
     [
-        'middleware' => 'auth',
+        // 'middleware' => 'auth',
     ],
     function () {
         Route::get('/admin', [HomeController::class, 'index'])->name('admin.dashboard');
-        Route::get('/admin/blogs', [BlogController::class, 'index'])->name('blog.admin');
-        Route::get('/admin/blogs/create', [BlogController::class, 'create'])->name('blog.create');
-        Route::post('/admin/blog/store', [BlogController::class, 'store'])->name('blog.store');
-        Route::get('/admin/blogs/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
-        Route::post('/admin/blog/update/{id}', [BlogController::class, 'update'])->name('blog.update');
-        Route::get('/admin/blog/delete/{id}', [BlogController::class, 'destroy'])->name('blog.delete');
+        Route::get('/blogs', [BlogController::class, 'index'])->name('blog.admin');
+        Route::get('/blogs/create', [BlogController::class, 'create'])->name('blog.create');
+        Route::post('/blog/store', [BlogController::class, 'store'])->name('blog.store');
+        Route::get('/blogs/edit/{id}', [BlogController::class, 'edit'])->name('blog.edit');
+        Route::post('/blog/update/{id}', [BlogController::class, 'update'])->name('blog.update');
+        Route::get('/blog/delete/{id}', [BlogController::class, 'destroy'])->name('blog.delete');
         
         Route::get('/portfolios', [PortfolioController::class, 'index'])->name('portfolio.admin');
         Route::post('/portfolio/store', [PortfolioController::class, 'store'])->name('portfolio.store');

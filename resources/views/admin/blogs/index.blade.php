@@ -15,7 +15,7 @@
 
     <div class="card shadow rounded mt-4" style="border:none;">
         <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsiv">
                 <table class="table" id="tableBlog">
                     <thead>
                         <tr>
@@ -24,19 +24,20 @@
                             <th>Deskripsi</th>
                             <th>Thumbnail</th>
                             <th>Aksi</th>
-                        <tr>
+                        </tr>
                     </thead>
                     <tbody>
                         @foreach ($blog as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->title }}</td>
-                                <td>{{ $item->description }}</td>
+                                <td>{!! \Illuminate\Support\Str::limit($item->description, 50) !!}</td>
                                 <td>
-                                    <img src="{{ asset('storage/' . $item->image) }}" class="img-fluid">
+                                    <img src="{{ asset('storage/blogs/' . $item->image) }}" class="img-fluid">
                                 </td>
                                 <td>
-
+                                    <a href="{{ route('blog.edit', $item->id) }}" class="btn btn-warning"><i class="fas fa-pen"></i></a>
+                                    <a href="#" class="btn btn-danger delete" data-id="{{ $item->id }}"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -51,6 +52,27 @@
     <script>
         $(document).ready(function() {
             $('#tableBlog').DataTable();
+        });
+
+        $('.delete').click(function() {
+            var blogId = $(this).attr('data-id');
+            swal({
+                    title: "Apakah kamu yakin ?",
+                    text: "Apa kamu yakin ingin menghapus data ini",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location = "/blog/delete/" + blogId + ""
+                        swal("Data berhasil dihapus", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("Data tidak jadi dihapus");
+                    }
+                });
         });
     </script>
 @endpush

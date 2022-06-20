@@ -108,7 +108,9 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('./admin/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('./admin/js/demo/chart-pie-demo.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @include('sweetalert::alert')
     @stack('scripts')
 </body>

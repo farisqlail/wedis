@@ -6,6 +6,7 @@ use Facade\FlareClient\Http\Response;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Blog;
 
@@ -51,7 +52,6 @@ class BlogController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required',
-            'slug' => 'required',
             'description' => 'required',
             'image' => 'required',
         ]);
@@ -67,10 +67,11 @@ class BlogController extends Controller
         } else {
 
             try {
+                Alert::success('Blog Berhasil Terupload');
                 $blog = new Blog;
 
                 $blog->title = $request->title;
-                $blog->slug = $request->slug;
+                $blog->slug = Str::slug($request->title);
                 $blog->description = $request->description;
                 $blog->image = $request->image->store('blogs');
 
@@ -129,9 +130,7 @@ class BlogController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required',
-            'slug' => 'required',
             'description' => 'required',
-            'image' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -145,10 +144,12 @@ class BlogController extends Controller
         } else {
 
             try {
+                Alert::success('Blog Berhasil Terupdate');
+
                 $blog = Blog::findOrFail($id);
             
                 $blog->title = $request->title;
-                $blog->slug = $request->slug;
+                $blog->slug = Str::slug($request->title);
                 $blog->description = $request->description;
                 $blog->image = $request->image->store('blogs');
     
@@ -170,14 +171,14 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
+        
         $blog = Blog::findOrFail($id);
-        $blog->delete();
 
-        $response = [
-            'success' => true,
-            'message' => 'Berhasil menghapus data blog',
-            'data' => [],
-        ];
+        if($blog->image){
+            Storage::delete($blog->image);
+        }
+
+        $blog->delete();
 
         return redirect()->back();
     }
