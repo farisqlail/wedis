@@ -56,12 +56,46 @@
                 </thead>
                 <tbody>
                     @foreach ($category as $item)
+                        <div class="modal fade" id="exampleModalUpdate{{ $item->id }}" tabindex="-1"
+                            aria-labelledby="judulModal" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="judulModal">Edit Kategori</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ route('category.update', $item->id) }}" method="POST"
+                                            enctype="multipart/form-data">
+                                            @csrf
+
+                                            <div class="form-group">
+                                                <label for="title">Nama Kategori Portfolio</label>
+                                                <input type="text" class="form-control" id="title"
+                                                    name="category_name" value="{{ $item->category_name }}">
+                                            </div>
+
+                                            <div align="right">
+                                                <button type="submit" class="btn btn-success mt-3">Upload</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->category_name }}</td>
                             <td>
-                                <a href="{{ route('category.edit', $item->id) }}" class="btn btn-warning"><i
+                                <a href="" class="btn btn-warning edit" id="modalEdit" data-toggle="modal"
+                                    data-id="{{ $item->id }}" data-target="#exampleModalUpdate{{ $item->id }}"><i
                                         class="fas fa-pen"></i></a>
+                                {{-- <a href="{{ route('category.edit', $item->id) }}" class="btn btn-warning"><i
+                                        class="fas fa-pen"></i></a> --}}
                                 <a href="#" class="btn btn-danger delete" data-id="{{ $item->id }}"><i
                                         class="fas fa-trash-alt"></i></a>
                             </td>

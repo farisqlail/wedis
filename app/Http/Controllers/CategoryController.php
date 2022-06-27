@@ -31,9 +31,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('admin.categories.create');
-    }
+    {}
 
     /**
      * Store a newly created resource in storage.
@@ -78,9 +76,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
-    }
+    {}
 
     /**
      * Show the form for editing the specified resource.
@@ -89,13 +85,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        $category = Category::find($id);
-
-        return view('admin.categories.edit', [
-            'category' => $category
-        ]);
-    }
+    {}
 
     /**
      * Update the specified resource in storage.
