@@ -20,13 +20,15 @@ class PortfolioController extends Controller
     {
         $portfolio = Portfolio::all();
         
-        $response = [
-            'success' => true,
-            'message' => 'Berhasil mengambil data portfolio',
-            'data' => $portfolio,
-        ];
+        // $response = [
+        //     'success' => true,
+        //     'message' => 'Berhasil mengambil data portfolio',
+        //     'data' => $portfolio,
+        // ];
 
-        return response()->json($response, 200);
+        return redirect()->view('admin.portfolios.index', [
+            'portfolio' => $portfolio
+        ]);
     }
 
     /**

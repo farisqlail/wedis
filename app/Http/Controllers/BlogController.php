@@ -76,7 +76,6 @@ class BlogController extends Controller
                 $blog->image = $request->image->store('blogs');
 
                 $blog->save();
-
             } catch (\Throwable $th) {
                 throw $th;
             }
@@ -147,14 +146,19 @@ class BlogController extends Controller
                 Alert::success('Blog Berhasil Terupdate');
 
                 $blog = Blog::findOrFail($id);
-            
+                $response = [
+                    'success' => false,
+                    'message' => 'Gagal menghapus data blog',
+                ];
+    
+                (!$blog ?? $response);
+
                 $blog->title = $request->title;
                 $blog->slug = Str::slug($request->title);
                 $blog->description = $request->description;
                 $blog->image = $request->image->store('blogs');
-    
-                $blog->save();
 
+                $blog->save();
             } catch (\Throwable $th) {
                 throw $th;
             }
@@ -171,14 +175,23 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-        
-        $blog = Blog::findOrFail($id);
+        try {
+            $blog = Blog::findOrFail($id);
+            $response = [
+                'success' => false,
+                'message' => 'Gagal menghapus data blog',
+            ];
 
-        if($blog->image){
-            Storage::delete($blog->image);
+             (!$blog ?? $response);
+
+            if ($blog->image) {
+                Storage::delete($blog->image);
+            }
+
+            $blog->delete();
+        } catch (\Throwable $th) {
+            throw $th;
         }
-
-        $blog->delete();
 
         return redirect()->back();
     }

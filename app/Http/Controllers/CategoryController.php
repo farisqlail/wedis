@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
+
 class CategoryController extends Controller
 {
     /**
@@ -19,13 +20,9 @@ class CategoryController extends Controller
     {
         $category = Category::all();
 
-        $response = [
-            'success' => true,
-            'message' => 'Berhasil mengambil data category',
-            'data' => $category,
-        ];
-
-        return response()->json($response, 200);
+        return view('admin.categories.index', [
+            'category' => $category
+        ]);
     }
 
     /**
@@ -35,7 +32,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.categories.create');
     }
 
     /**
@@ -59,19 +56,18 @@ class CategoryController extends Controller
             return response()->json($response, 200);
         } else {
 
-            $category = new Category;
+            try {
+                Alert::success('success', 'Berhasil Menambah Kategori');
 
-            $category->category_name = $request->category_name;
+                $category = new Category;
+                $category->category_name = $request->category_name;
 
-            $category->save();
+                $category->save();
+            } catch (\Throwable $th) {
+                throw $th;
+            }
 
-            $response = [
-                'success' => true,
-                'message' => 'Berhasil menambahkan data category',
-                'data' => $category,
-            ];
-
-            return response()->json($response, 200);
+            return redirect()->route('category.admin');
         }
     }
 
@@ -94,7 +90,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+
+        return view('admin.categories.edit', [
+            'category' => $category
+        ]);
     }
 
     /**
@@ -119,19 +119,18 @@ class CategoryController extends Controller
             return response()->json($response, 200);
         } else {
 
-            $category = Category::findOrFail($id);
+            try {
+                Alert::success('success', 'Berhasil mengedit data category');
 
-            $category->category_name = $request->category_name;
+                $category = Category::find($id);
+                $category->category_name = $request->category_name;
 
-            $category->save();
+                $category->save();
+            } catch (\Throwable $th) {
+                throw $th;
+            }
 
-            $response = [
-                'success' => true,
-                'message' => 'Berhasil mrngrdit data category',
-                'data' => $category,
-            ];
-
-            return response()->json($response, 200);
+            return redirect()->route('category.admin');
         }
     }
 
@@ -143,15 +142,22 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::findOrFail($id);
-        $category->delete();
 
-        $response = [
-            'success' => true,
-            'message' => 'Berhasil menghapus data category',
-            'data' => [],
-        ];
 
-        return response()->json($response, 200);
+        try {
+            $category = Category::findOrFail($id);
+            $response = [
+                'success' => false,
+                'message' => 'Gagal menghapus data blog',
+            ];
+
+            (!$category ?? $response);
+
+            $category->delete();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        return redirect()->back();
     }
 }

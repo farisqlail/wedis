@@ -10,7 +10,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('home') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -32,8 +32,15 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-album-collection"></i>
+        <a class="nav-link" href="{{ route('category.admin') }}">
+            <i class="fas fa-archive"></i>
+            <span>Category Portfolio</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('portfolio.admin') }}">
+            <i class="fas fa-archive"></i>
             <span>Portfolio</span>
         </a>
     </li>

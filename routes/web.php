@@ -31,12 +31,16 @@ Route::group(
         Route::get('/blog/delete/{id}', [BlogController::class, 'destroy'])->name('blog.delete');
         
         Route::get('/portfolios', [PortfolioController::class, 'index'])->name('portfolio.admin');
+        Route::get('/portfolio/create', [PortfolioController::class, 'create'])->name('portfolio.create');
         Route::post('/portfolio/store', [PortfolioController::class, 'store'])->name('portfolio.store');
+        Route::get('/portfolio/edit/{id}', [PortfolioController::class, 'edit'])->name('portfolio.edit');
         Route::post('/portfolio/update/{id}', [PortfolioController::class, 'update'])->name('portfolio.update');
         Route::get('/portfolio/delete/{id}', [PortfolioController::class, 'destroy'])->name('portfolio.delete');
 
-        Route::get('/categories', [CategoryControlleroller::class, 'index'])->name('category.admin');
+        Route::get('/categories', [CategoryController::class, 'index'])->name('category.admin');
+        Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
         Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
+        Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
         Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
         Route::get('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
     }

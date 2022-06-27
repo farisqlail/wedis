@@ -15,7 +15,7 @@
 
     <div class="card shadow rounded mt-4" style="border:none;">
         <div class="card-body">
-            <div class="table-responsiv">
+            <div class="table-responsive">
                 <table class="table" id="tableBlog">
                     <thead>
                         <tr>
