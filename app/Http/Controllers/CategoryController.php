@@ -138,7 +138,7 @@ class CategoryController extends Controller
             $category = Category::findOrFail($id);
             $response = [
                 'success' => false,
-                'message' => 'Gagal menghapus data blog',
+                'message' => 'Gagal menghapus data Kategori',
             ];
 
             (!$category ?? $response);

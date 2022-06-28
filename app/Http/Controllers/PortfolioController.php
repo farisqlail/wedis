@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -19,15 +20,11 @@ class PortfolioController extends Controller
     public function index()
     {
         $portfolio = Portfolio::all();
-        
-        // $response = [
-        //     'success' => true,
-        //     'message' => 'Berhasil mengambil data portfolio',
-        //     'data' => $portfolio,
-        // ];
+        $categories = Category::all();
 
-        return redirect()->view('admin.portfolios.index', [
-            'portfolio' => $portfolio
+        return view('admin.portfolios.index', [
+            'portfolio' => $portfolio,
+            'categories' => $categories
         ]);
     }
 
@@ -38,7 +35,11 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+
+        return view('admin.portfolios.create', [
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -64,22 +65,21 @@ class PortfolioController extends Controller
 
             return response()->json($response, 200);
         } else {
-            $portfolio = new Portfolio();
-            
-            $portfolio->id_categories = $request->id_categories;
-            $portfolio->portfolio_name = $request->portfolio_name;
-            $portfolio->description = $request->description;
-            $portfolio->image = $request->image;
+            try {
+                Alert::success('success', 'Berhasil Menambah Portfolio');
+                $portfolio = new Portfolio();
 
-            $portfolio->save();
+                $portfolio->id_categories = $request->id_categories;
+                $portfolio->portfolio_name = $request->portfolio_name;
+                $portfolio->description = $request->description;
+                $portfolio->image = $request->image->store('portfolios');
 
-            $response = [
-                'success' => true,
-                'message' => 'Berhasil menambahkan data portfolio',
-                'data' => $portfolio,
-            ];
+                $portfolio->save();
+            } catch (\Throwable $th) {
+                throw $th;
+            }
 
-            return response()->json($response, 200);
+            return redirect()->route('portfolio.admin');
         }
     }
 
@@ -110,7 +110,13 @@ class PortfolioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $portfolio = Portfolio::findOrFail($id);
+        $categories = Category::all();
+
+        return view('admin.portfolios.edit', [
+            'portfolio' => $portfolio,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -137,22 +143,21 @@ class PortfolioController extends Controller
 
             return response()->json($response, 200);
         } else {
-            $portfolio = Portfolio::findOrFail($id);
+            try {
+                Alert::success('success', 'Portfolio Berhasil Terupdate');
+                $portfolio = Portfolio::findOrFail($id);
 
-            $portfolio->id_categories = $request->id_categories;
-            $portfolio->portfolio_name = $request->portfolio_name;
-            $portfolio->description = $request->description;
-            $portfolio->image = $request->image;
+                $portfolio->id_categories = $request->id_categories;
+                $portfolio->portfolio_name = $request->portfolio_name;
+                $portfolio->description = $request->description;
+                $portfolio->image = $request->image->store('portfolios');
 
-            $portfolio->save();
+                $portfolio->save();
+            } catch (\Throwable $th) {
+                throw $th;
+            }
 
-            $response = [
-                'success' => true,
-                'message' => 'Berhasil mengedit data portfolio',
-                'data' => $portfolio,
-            ];
-
-            return response()->json($response, 200);
+            return redirect()->route('portfolio.admin');
         }
     }
 
@@ -164,16 +169,24 @@ class PortfolioController extends Controller
      */
     public function destroy($id)
     {
-        $portfolio = Portfolio::findOrFail($id);
+        try {
+            Alert::success('success', 'Berhasil Menghapus Portfolio');
+            $portfolio = Portfolio::findOrFail($id);
+            $response = [
+                'success' => false,
+                'message' => 'Gagal menghapus data Portfolio',
+            ];
 
-        $portfolio->delete();
+            (!$portfolio ?? $response);
 
-        $response = [
-            'success' => true,
-            'message' => 'Berhasil menghapus data portfolio',
-            'data' => [],
-        ];
+            if ($portfolio->image) {
+                Storage::delete($portfolio->image);
+            }
+            $portfolio->delete();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
 
-        return response()->json($response, 200);
+        return redirect()->back();
     }
 }

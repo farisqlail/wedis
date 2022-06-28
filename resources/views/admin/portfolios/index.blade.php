@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="card">
+    <div class="card shadow rounded mt-4" style="border: none;">
         <div class="card-body">
             <table class="table" id="tablePortfolio">
                 <thead>
@@ -26,20 +26,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @foreach ($portfolio as $item)
+                    @foreach ($portfolio as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->title }}</td>
+                            <td>{{ $item->portfolio_name }}</td>
                             <td>{!! \Illuminate\Support\Str::limit($item->description, 50) !!}</td>
                             <td>
-                                <img src="{{ asset('storage/blogs/' . $item->image) }}" class="img-fluid">
+                                <img src="{{ asset('storage/portfolios/' . $item->image) }}" class="img-fluid">
                             </td>
                             <td>
-                                <a href="{{ route('blog.edit', $item->id) }}" class="btn btn-warning"><i class="fas fa-pen"></i></a>
+                                <a href="{{ route('portfolio.edit', $item->id) }}" class="btn btn-warning"><i class="fas fa-pen"></i></a>
                                 <a href="#" class="btn btn-danger delete" data-id="{{ $item->id }}"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -54,7 +54,7 @@
     });
 
     $('.delete').click(function() {
-        var blogId = $(this).attr('data-id');
+        var portfolioId = $(this).attr('data-id');
         swal({
                 title: "Apakah kamu yakin ?",
                 text: "Apa kamu yakin ingin menghapus data ini",
@@ -64,7 +64,7 @@
             })
             .then((willDelete) => {
                 if (willDelete) {
-                    window.location = "/blog/delete/" + blogId + ""
+                    window.location = "/portfolio/delete/" + portfolioId + ""
                     swal("Data berhasil dihapus", {
                         icon: "success",
                     });

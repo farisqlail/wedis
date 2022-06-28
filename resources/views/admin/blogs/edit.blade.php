@@ -12,7 +12,7 @@
         <div class="col-md-6" align="right">
             <a href="{{ route('blog.admin') }}" class="btn btn-danger">
                 <i class="fas fa-arrow-left"></i>
-                Kembai
+                Kembali
             </a>
         </div>
     </div>

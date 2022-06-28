@@ -33,7 +33,7 @@
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('category.admin') }}">
-            <i class="fas fa-archive"></i>
+            <i class="fas fa-th-large"></i>
             <span>Category Portfolio</span>
         </a>
     </li>
