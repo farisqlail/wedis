@@ -50,6 +50,7 @@ Route::group(
         Route::get('/customer/delete/{id}', [CustomerController::class, 'destroy']);
 
         Route::resource('/developer', DeveloperController::class);
+        Route::get('/developer/delete/{id}', [DeveloperController::class, 'destroy']);
 
         Route::resource('/pembayaran', CustomerController::class);
     }

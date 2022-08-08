@@ -162,11 +162,20 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
+        try {
+            $customer = Customer::findOrFail($id);
+            $response = [
+                'success' => false,
+                'message' => 'Gagal menghapus data Customer',
+            ];
 
-        $customer = Customer::findOrFail($id);
+            (!$customer ?? $response);
 
+            $customer->delete();
 
-        $customer->delete();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
 
         return redirect()->back();
     }
