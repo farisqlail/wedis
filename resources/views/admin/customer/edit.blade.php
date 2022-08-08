@@ -1,13 +1,13 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Tambah Customer')
+@section('title', 'Edit Customer')
 
 @section('admin.content')
 
     <!-- Page Heading -->
     <div class="row">
         <div class="col-md-6">
-            <h1 class="h3 mb-0 text-gray-800">Halaman Tambah Customer</h1>
+            <h1 class="h3 mb-0 text-gray-800">Halaman Edit Customer</h1>
         </div>
         <div class="col-md-6" align="right">
             <a href="{{ route('customer.index') }}" class="btn btn-danger">
@@ -19,22 +19,23 @@
 
     <div class="card shadow rounded mt-4" style="border: none;">
         <div class="card-body">
-            <form action="{{ route('customer.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('customer.update', $customer->id) }}" method="POST" enctype="multipart/form-data">
+                {{ method_field('PUT') }}
                 @csrf
 
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="title">Nama Project</label>
-                            <input type="text" class="form-control" id="title" name="nama_project"
-                                placeholder="Aplikasi Keuangan ...">
+                            <input type="text" class="form-control" id="" name="nama_project"
+                                value="{{ $customer->nama_project }}">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="description">Nama Customer</label>
-                            <input type="text" class="form-control" id="title" name="nama_customer"
-                                placeholder="Jokowi ...">
+                            <input type="text" class="form-control" id="" name="nama_customer"
+                                value="{{ $customer->nama_customer }}">
                         </div>
                     </div>
                 </div>
@@ -54,18 +55,18 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Harga</label>
-                            <input type="text" class="form-control" name="harga" id="harga" placeholder="100,000">
+                            <input type="text" class="form-control" name="harga" id="harga" value="{{ $customer->harga }}">
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="">Total</label>
-                    <input type="text" class="form-control" name="total" id="total" placeholder="100,000">
+                    <input type="text" class="form-control" name="total" id="total" value="{{ $customer->total }}">
                 </div>
 
                 <div align="right">
-                    <button type="submit" class="btn btn-success mt-3">Tambah</button>
+                    <button type="submit" class="btn btn-success mt-3">Edit</button>
                 </div>
             </form>
         </div>

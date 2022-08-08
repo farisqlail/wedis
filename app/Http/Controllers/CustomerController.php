@@ -47,7 +47,39 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nama_project' => 'required',
+            'nama_customer' => 'required',
+            'id_developer' => 'required',
+            'harga' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            $response = [
+                'success' => false,
+                'message' => 'Gagal menambahkan data customer',
+            ];
+
+            return response()->json($response, 200);
+        } else {
+
+            try {
+                Alert::success('success', 'Berhasil Menambah Customer');
+
+                $customer = new Customer();
+                $customer->nama_project  = $request->nama_project;
+                $customer->nama_customer = $request->nama_customer;
+                $customer->id_developer = $request->id_developer;
+                $customer->harga = $request->harga;
+                $customer->total = $request->total;
+
+                $customer->save();
+            } catch (\Throwable $th) {
+                throw $th;
+            }
+
+            return redirect()->route('customer.index');
+        }
     }
 
     /**
@@ -69,7 +101,13 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customer = Customer::findOrFail($id);
+        $developer = Developer::all();
+
+        return view('admin.customer.edit', [
+            'developer' => $developer,
+            'customer' => $customer
+        ]);
     }
 
     /**
@@ -81,7 +119,39 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nama_project' => 'required',
+            'nama_customer' => 'required',
+            'id_developer' => 'required',
+            'harga' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            $response = [
+                'success' => false,
+                'message' => 'Gagal mengedit data customer',
+            ];
+
+            return response()->json($response, 200);
+        } else {
+
+            try {
+                Alert::success('success', 'Berhasil Edit Customer');
+
+                $customer = Customer::findOrFail($id);
+                $customer->nama_project  = $request->nama_project;
+                $customer->nama_customer = $request->nama_customer;
+                $customer->id_developer = $request->id_developer;
+                $customer->harga = $request->harga;
+                $customer->total = $request->total;
+
+                $customer->save();
+            } catch (\Throwable $th) {
+                throw $th;
+            }
+
+            return redirect()->route('customer.index');
+        }
     }
 
     /**
@@ -92,6 +162,12 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $customer = Customer::findOrFail($id);
+
+
+        $customer->delete();
+
+        return redirect()->back();
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PortfolioController;
 use Illuminate\Support\Facades\Auth;
@@ -46,6 +47,7 @@ Route::group(
         Route::get('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
 
         Route::resource('/customer', CustomerController::class);
+        Route::get('/customer/delete/{id}', [CustomerController::class, 'destroy']);
 
         Route::resource('/developer', DeveloperController::class);
 

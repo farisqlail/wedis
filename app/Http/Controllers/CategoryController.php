@@ -132,8 +132,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-
-
         try {
             $category = Category::findOrFail($id);
             $response = [

@@ -29,20 +29,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($blog as $item)
+                        @foreach ($customer as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->title }}</td>
-                                <td>{!! \Illuminate\Support\Str::limit($item->description, 50) !!}</td>
+                                <td>{{ $item->nama_project }}</td>
+                                <td>{{ $item->nama_customer }}</td>
+                                <td>{{ $item->nama_developer }}</td>
+                                <td>{{ $item->harga }}</td>
+                                <td>{{ $item->total }}</td>
                                 <td>
-                                    <img src="{{ asset('storage/blogs/' . $item->image) }}" class="img-fluid">
-                                </td>
-                                <td>
-                                    <a href="{{ route('blog.edit', $item->id) }}" class="btn btn-warning"><i class="fas fa-pen"></i></a>
+                                    <a href="{{ route('customer.edit', $item->id) }}" class="btn btn-warning"><i class="fas fa-pen"></i></a>
                                     <a href="#" class="btn btn-danger delete" data-id="{{ $item->id }}"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -55,7 +55,8 @@
         $(document).ready(function() {
             $('#tableCustomer').DataTable();
         });
-
+    </script>
+    <script>
         $('.delete').click(function() {
             var customerId = $(this).attr('data-id');
             swal({
@@ -67,7 +68,7 @@
                 })
                 .then((willDelete) => {
                     if (willDelete) {
-                        window.location = "/blog/delete/" + customerId + ""
+                        window.location = "/customer/delete/" + customerId + ""
                         swal("Data berhasil dihapus", {
                             icon: "success",
                         });
