@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PortfolioController;
 use Illuminate\Support\Facades\Auth;
@@ -43,5 +44,11 @@ Route::group(
         Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
         Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
         Route::get('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
+
+        Route::resource('/customer', CustomerController::class);
+
+        Route::resource('/developer', DeveloperController::class);
+
+        Route::resource('/pembayaran', CustomerController::class);
     }
 );
