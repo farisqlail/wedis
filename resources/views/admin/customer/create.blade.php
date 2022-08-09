@@ -53,15 +53,10 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="">Harga</label>
-                            <input type="text" class="form-control" name="harga" id="harga" placeholder="100,000">
+                            <label for="">Dana</label>
+                            <input type="text" class="form-control" name="dana" id="harga" placeholder="100,000">
                         </div>
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="">Total</label>
-                    <input type="text" class="form-control" name="total" id="total" placeholder="100,000">
                 </div>
 
                 <div align="right">
@@ -73,7 +68,7 @@
 
 @endsection
 
-@push('scripts')
+{{-- @push('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
     <script>
         $('#harga').mask('000.000.000.000', {
@@ -83,4 +78,4 @@
             reverse: true
         });
     </script>
-@endpush
+@endpush --}}

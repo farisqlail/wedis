@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PortfolioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +53,6 @@ Route::group(
         Route::resource('/developer', DeveloperController::class);
         Route::get('/developer/delete/{id}', [DeveloperController::class, 'destroy']);
 
-        Route::resource('/pembayaran', CustomerController::class);
+        Route::resource('/pembayaran', PembayaranController::class);
     }
 );

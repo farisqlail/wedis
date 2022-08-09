@@ -51,7 +51,7 @@ class CustomerController extends Controller
             'nama_project' => 'required',
             'nama_customer' => 'required',
             'id_developer' => 'required',
-            'harga' => 'required'
+            'dana' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -70,8 +70,8 @@ class CustomerController extends Controller
                 $customer->nama_project  = $request->nama_project;
                 $customer->nama_customer = $request->nama_customer;
                 $customer->id_developer = $request->id_developer;
-                $customer->harga = $request->harga;
-                $customer->total = $request->total;
+                $customer->dana = $request->dana;
+                $customer->status = 'Progress';
 
                 $customer->save();
             } catch (\Throwable $th) {
@@ -123,7 +123,7 @@ class CustomerController extends Controller
             'nama_project' => 'required',
             'nama_customer' => 'required',
             'id_developer' => 'required',
-            'harga' => 'required'
+            'dana' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -142,8 +142,8 @@ class CustomerController extends Controller
                 $customer->nama_project  = $request->nama_project;
                 $customer->nama_customer = $request->nama_customer;
                 $customer->id_developer = $request->id_developer;
-                $customer->harga = $request->harga;
-                $customer->total = $request->total;
+                $customer->dana = $request->dana;
+                $customer->status = 'Progress';
 
                 $customer->save();
             } catch (\Throwable $th) {
@@ -171,7 +171,10 @@ class CustomerController extends Controller
 
             (!$customer ?? $response);
 
-            $customer->delete();
+            $status = [
+                'status' => 'Done'
+            ];
+            $customer->update($status);
 
         } catch (\Throwable $th) {
             throw $th;

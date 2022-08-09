@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 
 class PembayaranController extends Controller
@@ -13,7 +14,13 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        //
+        $pembayaran = Pembayaran::join('customers as cs', 'cs.id', '=', 'pembayarans.id_customer')
+            ->join('developers as dev', 'dev.id', '=', 'pembayarans.id_developer')
+            ->get();
+
+        return view('admin.pembayaran.index', [
+            'pembayaran' => $pembayaran
+        ]);
     }
 
     /**

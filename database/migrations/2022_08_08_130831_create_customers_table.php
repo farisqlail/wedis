@@ -18,8 +18,9 @@ class CreateCustomersTable extends Migration
             $table->integer('id_developer');
             $table->string('nama_project');
             $table->string('nama_customer');
-            $table->string('harga');
-            $table->string('total');
+            $table->integer('dana');
+            $table->string('status');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

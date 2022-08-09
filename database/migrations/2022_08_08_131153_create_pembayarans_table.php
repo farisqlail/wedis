@@ -15,6 +15,11 @@ class CreatePembayaransTable extends Migration
     {
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_developer');
+            $table->integer('id_customer');
+            $table->integer('harga');
+            $table->integer('total');
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -49,7 +49,7 @@
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fas fa-cash-register"></i>
             <span>Transaksi</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -57,7 +57,7 @@
                 <h6 class="collapse-header">transaksi:</h6>
                 <a class="collapse-item" href="{{ url('/customer') }}">Customer</a>
                 <a class="collapse-item" href="{{ url('/developer') }}">Developer</a>
-                <a class="collapse-item" href="cards.html">Pembayaran</a>
+                <a class="collapse-item" href="{{ url('/pembayaran') }}">Pembayaran</a>
             </div>
         </div>
     </li>
