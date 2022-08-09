@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Developer Wedis')
+@section('title', 'Data Developer Wedis')
 
 @section('admin.content')
     <!-- Page Heading -->
