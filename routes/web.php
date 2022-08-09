@@ -54,5 +54,7 @@ Route::group(
         Route::get('/developer/delete/{id}', [DeveloperController::class, 'destroy']);
 
         Route::resource('/pembayaran', PembayaranController::class);
+        Route::get('/pembayaran/detail/{id}', [PembayaranController::class, 'detail'])->name('pembayaran.detail');
+        Route::get('/hitung-total/{id}', [PembayaranController::class, 'hitungTotal']);
     }
 );

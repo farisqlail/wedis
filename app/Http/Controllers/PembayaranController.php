@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
+use App\Models\Developer;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PembayaranController extends Controller
 {
@@ -14,12 +18,37 @@ class PembayaranController extends Controller
      */
     public function index()
     {
+        $customer  = Customer::where('status', 'Progress')->get();
+
+        return view('admin.pembayaran.index', [
+            'customer' => $customer
+        ]);
+    }
+
+    public function detail($id)
+    {
+        $customer = Customer::findOrFail($id);
+        $developer = Developer::all();
         $pembayaran = Pembayaran::join('customers as cs', 'cs.id', '=', 'pembayarans.id_customer')
             ->join('developers as dev', 'dev.id', '=', 'pembayarans.id_developer')
             ->get();
 
-        return view('admin.pembayaran.index', [
-            'pembayaran' => $pembayaran
+        return view('admin.pembayaran.detail', [
+            'pembayaran' => $pembayaran,
+            'developer' => $developer,
+            'customer' => $customer
+        ]);
+    }
+
+    public function hitungTotal(Request $request, $id)
+    {
+        $customer = Customer::findOrFail($id);
+        $hargaDev = $request->harga;
+
+        $total = $customer->dana - $hargaDev;
+        
+        return response()->json([
+            'total' => $total
         ]);
     }
 
@@ -41,7 +70,36 @@ class PembayaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'id_developer' => 'required',
+            'harga' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            $response = [
+                'success' => false,
+                'message' => 'Gagal menambah data pembayaran',
+            ];
+
+            return response()->json($response, 200);
+        } else {
+
+            try {
+                Alert::success('success', 'Berhasil menambah data pembayaran');
+
+                $pembayaran = new Pembayaran();
+                $pembayaran->id_developer = $request->id_developer;
+                $pembayaran->id_customer = $request->id_customer;
+                $pembayaran->harga = $request->harga;
+                $pembayaran->total = $request->total;
+
+                $pembayaran->save();
+            } catch (\Throwable $th) {
+                throw $th;
+            }
+
+            return redirect()->back();
+        }
     }
 
     /**
