@@ -80,13 +80,70 @@
                     </thead>
                     <tbody>
                         @foreach ($pembayaran as $item)
+                            <div class="modal fade" id="exampleModalUpdate{{ $item->id }}" tabindex="-1"
+                                aria-labelledby="judulModal" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="judulModal">Edit Pembayaran</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ route('pembayaran.update', $item->id) }}" method="POST"
+                                                enctype="multipart/form-data">
+                                                {{ method_field('PUT') }}
+                                                @csrf
+
+                                                <div class="form-group">
+                                                    <label for="">Nama Developer</label>
+                                                    <select name="id_developer" id="" class="form-control">
+                                                        <option value="">Pilih Developer</option>
+                                                        @foreach ($developer as $data)
+                                                            <option value="{{ $data->id }}"
+                                                                {{ $data->id == $data->id_developer ? 'selected' : '' }}>
+                                                                {{ $data->nama_developer }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <input type="number" name="id_customer" value="{{ $customer->id }}"
+                                                    hidden>
+
+                                                <div class="form-group">
+                                                    <label for="title">Harga</label>
+                                                    <input type="text" name="harga" id="hargaUpdate" class="form-control"
+                                                        placeholder="Rp. 800000" value="{{ $item->harga }}">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="title">Total</label>
+                                                    <input type="text" name="total" id="totalUpdate"
+                                                        class="form-control" readonly>
+                                                </div>
+
+                                                <div align="right">
+                                                    <button type="submit" class="btn btn-success mt-3">Edit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama_developer }}</td>
                                 <td>Rp. {{ number_format($item->harga) }}</td>
                                 <td>Rp. {{ number_format($item->total) }}</td>
                                 <td>
-                                    {{-- <a href="{{ route('pembayaran.detail', $item->id) }}" class="btn btn-info btn-sm">Detail Project</a> --}}
+                                    <a href="" class="btn btn-warning edit" id="modalEdit" data-toggle="modal"
+                                        data-id="{{ $item->id }}"
+                                        data-target="#exampleModalUpdate{{ $item->id }}"><i
+                                            class="fas fa-pen"></i></a>
+                                    <a href="#" class="btn btn-danger delete" data-id="{{ $item->id }}"><i
+                                            class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -116,6 +173,22 @@
                 success: function(data) {
                     console.log(data);
                     $('#total').val(data.total);
+                }
+            })
+        });
+    </script>
+    <script>
+        $('#hargaUpdate').on('change', function(e) {
+            var harga = e.target.value;
+            $.ajax({
+                url: '/hitung-total/' + {{ $customer->id }},
+                method: 'GET',
+                data: {
+                    harga: harga
+                },
+                success: function(data) {
+                    console.log(data);
+                    $('#totalUpdate').val(data.total);
                 }
             })
         });

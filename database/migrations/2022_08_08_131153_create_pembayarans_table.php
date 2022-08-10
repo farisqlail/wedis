@@ -19,7 +19,6 @@ class CreatePembayaransTable extends Migration
             $table->integer('id_customer');
             $table->integer('harga');
             $table->integer('total');
-            $table->string('status');
             $table->timestamps();
         });
     }

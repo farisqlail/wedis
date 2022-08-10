@@ -133,7 +133,36 @@ class PembayaranController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'id_developer' => 'required',
+            'harga' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            $response = [
+                'success' => false,
+                'message' => 'Gagal mengedit data pembayaran',
+            ];
+
+            return response()->json($response, 200);
+        } else {
+
+            try {
+                Alert::success('success', 'Berhasil mengedit data pembayaran');
+
+                $pembayaran = Pembayaran::findOrFail($id);
+                $pembayaran->id_developer = $request->id_developer;
+                $pembayaran->id_customer = $request->id_customer;
+                $pembayaran->harga = $request->harga;
+                $pembayaran->total = $request->total;
+
+                $pembayaran->save();
+            } catch (\Throwable $th) {
+                throw $th;
+            }
+
+            return redirect()->back();
+        }
     }
 
     /**

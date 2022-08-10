@@ -13,7 +13,6 @@ class Pembayaran extends Model
         'id_developer',
         'id_customer',
         'harga',
-        'total',
-        'status'
+        'total'
     ];
 }
