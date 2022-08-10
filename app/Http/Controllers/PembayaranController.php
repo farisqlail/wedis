@@ -25,6 +25,19 @@ class PembayaranController extends Controller
         ]);
     }
 
+    public function history()
+    {
+        $customer = Pembayaran::join('customers as cs', 'cs.id', '=', 'pembayarans.id_customer')
+            ->join('developers as dev', 'dev.id', '=', 'pembayarans.id_developer')
+            ->where('cs.status', 'Done')
+            ->get();
+            dd($customer);
+
+        return view('admin.history.index', [
+            'customer' => $customer
+        ]);
+    }
+
     public function detail($id)
     {
         $customer = Customer::findOrFail($id);
@@ -46,6 +59,18 @@ class PembayaranController extends Controller
         $hargaDev = $request->harga;
 
         $total = $customer->dana - $hargaDev;
+        
+        return response()->json([
+            'total' => $total
+        ]);
+    }
+
+    public function hitungTotalUpdate(Request $request, $id)
+    {
+        $data = Pembayaran::findOrFail($id);
+        $hargaDev = $request->harga;
+
+        $total = $data->total - $hargaDev;
         
         return response()->json([
             'total' => $total
@@ -173,6 +198,20 @@ class PembayaranController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $pembayaran = Pembayaran::findOrFail($id);
+            $response = [
+                'success' => false,
+                'message' => 'Gagal menghapus data pembayaran',
+            ];
+
+            (!$pembayaran ?? $response);
+
+            $pembayaran->delete();
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+
+        return redirect()->back();
     }
 }

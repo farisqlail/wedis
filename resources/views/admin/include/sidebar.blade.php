@@ -23,41 +23,36 @@
         
     </div>
 
-    <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('blog.admin') }}">
-            <i class="fas fa-fw fa-file-alt"></i>
-            <span>Artikel</span>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#masterProfile"
+            aria-expanded="true" aria-controls="masterProfile">
+            <i class="fas fa-address-card"></i>
+            <span>Master Profiles</span>
         </a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('category.admin') }}">
-            <i class="fas fa-th-large"></i>
-            <span>Category Portfolio</span>
-        </a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('portfolio.admin') }}">
-            <i class="fas fa-archive"></i>
-            <span>Portfolio</span>
-        </a>
+        <div id="masterProfile" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">transaksi:</h6>
+                <a class="collapse-item" href="{{ route('blog.admin') }}">Artikel</a>
+                <a class="collapse-item" href="{{ route('category.admin') }}">Category Portfolio</a>
+                <a class="collapse-item" href="{{ route('portfolio.admin') }}">Portfolio</a>
+            </div>
+        </div>
     </li>
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#transaksi"
+            aria-expanded="true" aria-controls="transaksi">
             <i class="fas fa-cash-register"></i>
             <span>Transaksi</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="transaksi" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">transaksi:</h6>
                 <a class="collapse-item" href="{{ url('/customer') }}">Customer</a>
                 <a class="collapse-item" href="{{ url('/developer') }}">Developer</a>
                 <a class="collapse-item" href="{{ url('/pembayaran') }}">Pembayaran</a>
+                <a class="collapse-item" href="{{ url('/history') }}">History Project</a>
             </div>
         </div>
     </li>

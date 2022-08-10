@@ -113,8 +113,9 @@
 
                                                 <div class="form-group">
                                                     <label for="title">Harga</label>
-                                                    <input type="text" name="harga" id="hargaUpdate" class="form-control"
-                                                        placeholder="Rp. 800000" value="{{ $item->harga }}">
+                                                    <input type="text" name="harga" id="hargaUpdate"
+                                                        class="form-control" placeholder="Rp. 800000"
+                                                        value="{{ $item->harga }}">
                                                 </div>
 
                                                 <div class="form-group">
@@ -131,7 +132,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama_developer }}</td>
@@ -160,6 +161,27 @@
         $(document).ready(function() {
             $('#tableDetail').DataTable();
         });
+
+        $('.delete').click(function() {
+            var pembayaranId = $(this).attr('data-id');
+            swal({
+                    title: "Apakah kamu yakin ?",
+                    text: "Apa kamu yakin ingin menghapus data ini",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location = "/pembayaran/delete/" + pembayaranId + ""
+                        swal("Data berhasil dihapus", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("Data tidak jadi dihapus");
+                    }
+                });
+        });
     </script>
     <script>
         $('#harga').on('change', function(e) {
@@ -181,7 +203,7 @@
         $('#hargaUpdate').on('change', function(e) {
             var harga = e.target.value;
             $.ajax({
-                url: '/hitung-total/' + {{ $customer->id }},
+                url: '/hitung-total-update/' + {{ $customer->id }},
                 method: 'GET',
                 data: {
                     harga: harga

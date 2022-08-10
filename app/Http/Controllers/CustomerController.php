@@ -175,7 +175,6 @@ class CustomerController extends Controller
                 'status' => 'Done'
             ];
             $customer->update($status);
-
         } catch (\Throwable $th) {
             throw $th;
         }
