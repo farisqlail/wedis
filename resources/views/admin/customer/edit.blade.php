@@ -55,7 +55,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Dana</label>
-                            <input type="text" class="form-control" name="dana" id="harga" value="{{ $customer->harga }}">
+                            <input type="text" class="form-control" name="dana" id="harga" value="{{ $customer->dana }}">
                         </div>
                     </div>
                 </div>

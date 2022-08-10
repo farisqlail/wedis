@@ -20,6 +20,7 @@ class CreateCustomersTable extends Migration
             $table->string('nama_customer');
             $table->integer('dana');
             $table->string('status');
+            $table->integer('keuntungan')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

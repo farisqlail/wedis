@@ -31,7 +31,7 @@ class PembayaranController extends Controller
             ->join('developers as dev', 'dev.id', '=', 'pembayarans.id_developer')
             ->where('cs.status', 'Done')
             ->get();
-            dd($customer);
+        dd($customer);
 
         return view('admin.history.index', [
             'customer' => $customer
@@ -55,14 +55,28 @@ class PembayaranController extends Controller
 
     public function hitungTotal(Request $request, $id)
     {
-        $customer = Customer::findOrFail($id);
-        $hargaDev = $request->harga;
+        $pembayaran = Pembayaran::where('id_customer', $id)->get();
 
-        $total = $customer->dana - $hargaDev;
-        
-        return response()->json([
-            'total' => $total
-        ]);
+        if (empty($pembayaran)) {
+            $customer = Customer::findOrFail($id);
+            $hargaDev = $request->harga;
+
+            $total = $customer->dana - $hargaDev;
+
+            return response()->json([
+                'total' => $total
+            ]);
+        } else {
+            $customer = Customer::findOrFail($id);
+            $hargaDev = $request->harga;
+
+            $total = $customer->keuntungan - $hargaDev;
+
+            return response()->json([
+                'total' => $total
+            ]);
+            
+        }
     }
 
     public function hitungTotalUpdate(Request $request, $id)
@@ -71,7 +85,7 @@ class PembayaranController extends Controller
         $hargaDev = $request->harga;
 
         $total = $data->total - $hargaDev;
-        
+
         return response()->json([
             'total' => $total
         ]);
@@ -117,6 +131,11 @@ class PembayaranController extends Controller
                 $pembayaran->id_customer = $request->id_customer;
                 $pembayaran->harga = $request->harga;
                 $pembayaran->total = $request->total;
+
+                $keuntungan = [
+                    'keuntungan' => $request->total
+                ];
+                Customer::where('id', $request->id_customer)->update($keuntungan);
 
                 $pembayaran->save();
             } catch (\Throwable $th) {

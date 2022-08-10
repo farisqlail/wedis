@@ -16,6 +16,7 @@ class Customer extends Model
         'nama_project',
         'nama_customer',
         'dana',
-        'status'
+        'status',
+        'keuntungan' 
     ];
 }

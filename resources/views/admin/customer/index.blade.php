@@ -25,6 +25,7 @@
                             <th>Developer</th>
                             <th>Dana</th>
                             <th>Status</th>
+                            <th>Keuntungan</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -38,11 +39,12 @@
                                 <td>Rp. {{ number_format($item->dana) }}</td>
                                 <td>
                                     @if ($item->status == 'Progress')
-                                        <span class="badge badge-warning">Progress</span>
+                                    <span class="badge badge-warning">Progress</span>
                                     @else
-                                        <span class="badge badge-danger">Done</span>
+                                    <span class="badge badge-danger">Done</span>
                                     @endif
                                 </td>
+                                <td>Rp. {{ number_format($item->keuntungan) }}</td>
                                 <td>
                                     @if ($item->status == 'Progress')
                                         <a href="{{ route('customer.edit', $item->id) }}" class="btn btn-warning"><i
