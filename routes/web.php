@@ -57,6 +57,7 @@ Route::group(
         Route::get('/pembayaran/delete/{id}', [PembayaranController::class, 'destroy']);
         Route::get('/pembayaran/detail/{id}', [PembayaranController::class, 'detail'])->name('pembayaran.detail');
         Route::get('/hitung-total/{id}', [PembayaranController::class, 'hitungTotal']);
+        Route::get('/hitung-keuntungan/{id}', [PembayaranController::class, 'hitungKeuntungan']);
         Route::get('/hitung-total-update/{id}', [PembayaranController::class, 'hitungTotalUpdate']);
         Route::get('/history', [PembayaranController::class, 'history']);
     }

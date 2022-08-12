@@ -13,10 +13,62 @@
                 <i class="fas fa-arrow-left"></i>
                 Kembali
             </a>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                <i class="fas fa-plus"></i>
-                Tambah Pembayaran
-            </button>
+            @if ($pembayaran->count() != 0)
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#keuntungan">
+                    <i class="fas fa-plus"></i>
+                    Tambah Pembayaran
+                </button>
+            @else
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fas fa-plus"></i>
+                    Tambah Pembayaran
+                </button>
+            @endif
+        </div>
+    </div>
+
+    <div class="modal fade" id="keuntungan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Pembayaran</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('pembayaran.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="form-group">
+                            <label for="title">Nama Developer</label>
+                            <select name="id_developer" id="" class="form-control">
+                                <option value="">Pilih Developer</option>
+                                @foreach ($developer as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama_developer }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <input type="number" name="id_customer" value="{{ $customer->id }}" hidden>
+
+                        <div class="form-group">
+                            <label for="title">Harga</label>
+                            <input type="text" name="harga" id="harga2" class="form-control"
+                                placeholder="Rp. 800000">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title">Total</label>
+                            <input type="text" name="total" id="total2" class="form-control" readonly>
+                        </div>
+
+                        <div align="right">
+                            <button type="submit" class="btn btn-success mt-3">Tambah</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -86,7 +138,8 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="judulModal">Edit Pembayaran</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
@@ -195,6 +248,22 @@
                 success: function(data) {
                     console.log(data);
                     $('#total').val(data.total);
+                }
+            })
+        });
+
+        $('#harga2').on('change', function(e) {
+            var harga = e.target.value;
+            $.ajax({
+                url: '/hitung-keuntungan/' + {{ $customer->id }},
+                method: 'GET',
+                data: {
+                    harga: harga
+                },
+                success: function(data) {
+                    console.log(data);
+                    console.log('aku disini')
+                    $('#total2').val(data.total);
                 }
             })
         });

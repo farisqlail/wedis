@@ -40,6 +40,7 @@ class PembayaranController extends Controller
 
     public function detail($id)
     {
+
         $customer = Customer::findOrFail($id);
         $developer = Developer::all();
         $pembayaran = Pembayaran::join('customers as cs', 'cs.id', '=', 'pembayarans.id_customer')
@@ -55,28 +56,25 @@ class PembayaranController extends Controller
 
     public function hitungTotal(Request $request, $id)
     {
-        $pembayaran = Pembayaran::where('id_customer', $id)->get();
+        $customer = Customer::findOrFail($id);
+        $hargaDev = $request->harga;
 
-        if (empty($pembayaran)) {
-            $customer = Customer::findOrFail($id);
-            $hargaDev = $request->harga;
+        $total = $customer->dana - $hargaDev;
+        return response()->json([
+            'total' => $total
+        ]);
 
-            $total = $customer->dana - $hargaDev;
+    }
 
-            return response()->json([
-                'total' => $total
-            ]);
-        } else {
-            $customer = Customer::findOrFail($id);
-            $hargaDev = $request->harga;
+    public function hitungKeuntungan(Request $request, $id)
+    {
+        $customer = Customer::findOrFail($id);
+        $hargaDev = $request->harga;
 
-            $total = $customer->keuntungan - $hargaDev;
-
-            return response()->json([
-                'total' => $total
-            ]);
-            
-        }
+        $total = $customer->keuntungan - $hargaDev;
+        return response()->json([
+            'total' => $total
+        ]);
     }
 
     public function hitungTotalUpdate(Request $request, $id)
@@ -200,6 +198,11 @@ class PembayaranController extends Controller
                 $pembayaran->harga = $request->harga;
                 $pembayaran->total = $request->total;
 
+                $keuntungan = [
+                    'keuntungan' => $request->total
+                ];
+                Customer::where('id', $request->id_customer)->update($keuntungan);
+
                 $pembayaran->save();
             } catch (\Throwable $th) {
                 throw $th;
@@ -225,6 +228,13 @@ class PembayaranController extends Controller
             ];
 
             (!$pembayaran ?? $response);
+
+            if ($pembayaran->count() == 0) {
+                $keuntungan = [
+                    'keuntungan' => 0
+                ];
+                Customer::where('id', $id)->update($keuntungan);
+            }
 
             $pembayaran->delete();
         } catch (\Throwable $th) {
