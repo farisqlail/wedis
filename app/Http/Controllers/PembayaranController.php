@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use App\Models\Developer;
+use App\Models\Pemasukan;
 use App\Models\Pembayaran;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -42,6 +44,20 @@ class PembayaranController extends Controller
         $pembayaran = Pembayaran::join('customers as cs', 'cs.id', '=', 'pembayarans.id_customer')
             ->join('developers as dev', 'dev.id', '=', 'pembayarans.id_developer')
             ->get();
+
+        if($pembayaran->count() != 0)
+        {
+            $pemasukan = [
+                'keterangan' => $customer->nama_project,
+                'pemasukan' => $customer->keuntungan,
+                'created_at' => Carbon::now()
+            ];
+    
+            $keterangan = Pemasukan::where('keterangan', $customer->nama_project)->first();
+            if(!$keterangan){
+                Pemasukan::insert($pemasukan);
+            }
+        }
 
         return view('admin.pembayaran.detail', [
             'pembayaran' => $pembayaran,
@@ -140,15 +156,10 @@ class PembayaranController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    
+    public function pemasukan()
     {
-        //
+        
     }
 
     /**

@@ -34,7 +34,7 @@
                                 <td>
                                     <span class="badge badge-success">Project Done</span>
                                 </td>
-                                <td>Rp. {{ number_format($item->keuntungan nm ) }}</td>
+                                <td>Rp. {{ number_format($item->keuntungan) }}</td>
                             </tr>
                         @endforeach
                     </tbody>
