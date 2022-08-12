@@ -30,7 +30,7 @@ class PembayaranController extends Controller
     public function history()
     {
         $customer = Customer::where('status', 'Done')->get();
-        
+
         return view('admin.history.index', [
             'customer' => $customer
         ]);
@@ -43,27 +43,36 @@ class PembayaranController extends Controller
         $developer = Developer::all();
         $pembayaran = Pembayaran::join('customers as cs', 'cs.id', '=', 'pembayarans.id_customer')
             ->join('developers as dev', 'dev.id', '=', 'pembayarans.id_developer')
+            ->where('pembayarans.id_customer', $id)
             ->get();
 
-        if($pembayaran->count() != 0)
-        {
-            $pemasukan = [
-                'keterangan' => $customer->nama_project,
-                'pemasukan' => $customer->keuntungan,
-                'created_at' => Carbon::now()
-            ];
-    
-            $keterangan = Pemasukan::where('keterangan', $customer->nama_project)->first();
-            if(!$keterangan){
-                Pemasukan::insert($pemasukan);
-            }
-        }
+        // if (empty($pembayaran)) {
+            if ($pembayaran->count() != 0) {
+                $pemasukan = [
+                    'keterangan' => $customer->nama_project,
+                    'pemasukan' => $customer->keuntungan,
+                    'created_at' => Carbon::now()
+                ];
 
-        return view('admin.pembayaran.detail', [
-            'pembayaran' => $pembayaran,
-            'developer' => $developer,
-            'customer' => $customer
-        ]);
+                $keterangan = Pemasukan::where('keterangan', $customer->nama_project)->first();
+                if (!$keterangan) {
+                    Pemasukan::insert($pemasukan);
+                }
+            }
+
+            return view('admin.pembayaran.detail', [
+                'pembayaran' => $pembayaran,
+                'developer' => $developer,
+                'customer' => $customer
+            ]);
+        // } 
+        // else {
+        //     return view('admin.pembayaran.detail', [
+        //         'pembayaran' => $pembayaran,
+        //         'developer' => $developer,
+        //         'customer' => $customer
+        //     ]);
+        // }
     }
 
     public function hitungTotal(Request $request, $id)
@@ -75,7 +84,6 @@ class PembayaranController extends Controller
         return response()->json([
             'total' => $total
         ]);
-
     }
 
     public function hitungKeuntungan(Request $request, $id)
@@ -156,10 +164,9 @@ class PembayaranController extends Controller
         }
     }
 
-    
+
     public function pemasukan()
     {
-        
     }
 
     /**
