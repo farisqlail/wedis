@@ -27,12 +27,8 @@ class PembayaranController extends Controller
 
     public function history()
     {
-        $customer = Pembayaran::join('customers as cs', 'cs.id', '=', 'pembayarans.id_customer')
-            ->join('developers as dev', 'dev.id', '=', 'pembayarans.id_developer')
-            ->where('cs.status', 'Done')
-            ->get();
-        dd($customer);
-
+        $customer = Customer::where('status', 'Done')->get();
+        
         return view('admin.history.index', [
             'customer' => $customer
         ]);

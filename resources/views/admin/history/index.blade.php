@@ -19,7 +19,6 @@
                             <th>No</th>
                             <th>Nama Project</th>
                             <th>Nama Customer</th>
-                            <th>Developer</th>
                             <th>Dana</th>
                             <th>Status</th>
                             <th>Keuntungan</th>
@@ -31,12 +30,11 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama_project }}</td>
                                 <td>{{ $item->nama_customer }}</td>
-                                <td>{{ $item->nama_developer }}</td>
                                 <td>Rp. {{ number_format($item->dana) }}</td>
                                 <td>
                                     <span class="badge badge-success">Project Done</span>
                                 </td>
-                                <td>
+                                <td>Rp. {{ number_format($item->keuntungan nm ) }}</td>
                             </tr>
                         @endforeach
                     </tbody>
