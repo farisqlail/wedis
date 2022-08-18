@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PembayaranController extends Controller
 {
