@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Kebutuhan;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,9 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $keuntungan = Customer::sum('keuntungan');
+        $customer = Customer::sum('keuntungan');        
+        $kebutuhan = Kebutuhan::sum('pengeluaran');
+        $keuntungan = $customer - $kebutuhan;
+
         return view('admin.dashboard', [
-            'keuntungan' => $keuntungan
+            'keuntungan' => $keuntungan,
+            'kebutuhan' => $kebutuhan
         ]);	
     }
 }
