@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KebutuhanController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PortfolioController;
 use Illuminate\Support\Facades\Auth;
@@ -60,5 +61,8 @@ Route::group(
         Route::get('/hitung-keuntungan/{id}', [PembayaranController::class, 'hitungKeuntungan']);
         Route::get('/hitung-total-update/{id}', [PembayaranController::class, 'hitungTotalUpdate']);
         Route::get('/history', [PembayaranController::class, 'history']);
+
+        Route::resource('/kebutuhan', KebutuhanController::class);
+        Route::get('/kebutuhan/delete/{id}', [KebutuhanController::class, 'destroy']);
     }
 );

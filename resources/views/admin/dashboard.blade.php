@@ -21,7 +21,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Pemasukan</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. {{ $keuntungan }}</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. {{ number_format($keuntungan) }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="far fa-money-bill-alt fa-2x text-gray-300"></i>
@@ -39,7 +39,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                 Pengeluaran</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. 80000</div>
                         </div>
                         <div class="col-auto">
                             <i class="far fa-money-bill-alt fa-2x text-gray-300"></i>

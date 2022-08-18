@@ -39,6 +39,12 @@
         </div>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/kebutuhan') }}">
+            <i class="fas fa-clipboard-list"></i>
+            <span>Kebutuhan</span></a>
+    </li>
+
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#transaksi"
