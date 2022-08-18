@@ -46,33 +46,25 @@ class PembayaranController extends Controller
             ->where('pembayarans.id_customer', $id)
             ->get();
 
-        // if (empty($pembayaran)) {
-            if ($pembayaran->count() != 0) {
-                $pemasukan = [
-                    'keterangan' => $customer->nama_project,
-                    'pemasukan' => $customer->keuntungan,
-                    'created_at' => Carbon::now()
-                ];
 
-                $keterangan = Pemasukan::where('keterangan', $customer->nama_project)->first();
-                if (!$keterangan) {
-                    Pemasukan::insert($pemasukan);
-                }
+        if ($pembayaran->count() != 0) {
+            $pemasukan = [
+                'keterangan' => $customer->nama_project,
+                'pemasukan' => $customer->keuntungan,
+                'created_at' => Carbon::now()
+            ];
+
+            $keterangan = Pemasukan::where('keterangan', $customer->nama_project)->first();
+            if (!$keterangan) {
+                Pemasukan::insert($pemasukan);
             }
+        }
 
-            return view('admin.pembayaran.detail', [
-                'pembayaran' => $pembayaran,
-                'developer' => $developer,
-                'customer' => $customer
-            ]);
-        // } 
-        // else {
-        //     return view('admin.pembayaran.detail', [
-        //         'pembayaran' => $pembayaran,
-        //         'developer' => $developer,
-        //         'customer' => $customer
-        //     ]);
-        // }
+        return view('admin.pembayaran.detail', [
+            'pembayaran' => $pembayaran,
+            'developer' => $developer,
+            'customer' => $customer
+        ]);
     }
 
     public function hitungTotal(Request $request, $id)
