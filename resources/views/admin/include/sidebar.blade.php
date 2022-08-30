@@ -40,6 +40,12 @@
     </li>
 
     <li class="nav-item">
+        <a class="nav-link" href="{{ url('/pemasukan') }}">
+            <i class="fas fa-money-bill-wave-alt"></i>
+            <span>Pemasukan</span></a>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link" href="{{ url('/kebutuhan') }}">
             <i class="fas fa-clipboard-list"></i>
             <span>Kebutuhan</span></a>

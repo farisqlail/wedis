@@ -7,6 +7,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KebutuhanController;
+use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PortfolioController;
 use Illuminate\Support\Facades\Auth;
@@ -64,5 +65,8 @@ Route::group(
 
         Route::resource('/kebutuhan', KebutuhanController::class);
         Route::get('/kebutuhan/delete/{id}', [KebutuhanController::class, 'destroy']);
+
+        Route::resource('/pemasukan', PemasukanController::class);
+        Route::get('/pemasukan/delete/{id}', [PemasukanController::class, 'destroy']);
     }
 );
