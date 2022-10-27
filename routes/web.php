@@ -1,15 +1,15 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DeveloperController;
-use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\KebutuhanController;
 use App\Http\Controllers\Admin\PemasukanController;
 use App\Http\Controllers\Admin\PembayaranController;
 use App\Http\Controllers\Admin\PortfolioController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 

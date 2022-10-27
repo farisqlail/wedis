@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Facade\FlareClient\Http\Response;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
