@@ -1,20 +1,20 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\DeveloperController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\KebutuhanController;
-use App\Http\Controllers\PemasukanController;
-use App\Http\Controllers\PembayaranController;
-use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\DeveloperController;
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\KebutuhanController;
+use App\Http\Controllers\Admin\PemasukanController;
+use App\Http\Controllers\Admin\PembayaranController;
+use App\Http\Controllers\Admin\PortfolioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('welcome');
 });
 
 Auth::routes();
@@ -24,7 +24,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(
     [
-        // 'middleware' => 'auth',
+        'middleware' => 'auth',
     ],
     function () {
         Route::get('/admin', [HomeController::class, 'index'])->name('admin.dashboard');
