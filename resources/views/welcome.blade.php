@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('./frontend/css/style.css') }}">
+    <link rel="shortcut icon" href="{{ asset('./assets/images/logo-putih.png') }}" type="image/x-icon">
 </head>
 
 <body>
@@ -49,10 +50,7 @@
                                 </ul>
                             </div>
                             <div class="modal-footer border-0 gap-3" style="padding: 2rem; padding-top: 0.75rem">
-                                <button class="btn btn-default btn-no-fill">
-                                    Log In
-                                </button>
-                                <button class="btn btn-fill text-white">Try Now</button>
+                                <a href="{{ route('login') }}" class="btn btn-fill text-white">Masuk</a>
                             </div>
                         </div>
                     </div>
@@ -71,10 +69,7 @@
                         </li>
                     </ul>
                     <div class="gap-3">
-                        <button class="btn btn-default btn-no-fill">
-                            Log In
-                        </button>
-                        <button class="btn btn-fill text-white">Try Now</button>
+                        <a href="{{ route('login') }}" class="btn btn-fill text-white">Masuk</a>
                     </div>
                 </div>
             </nav>
@@ -236,7 +231,7 @@
                 <div class="col-md-6 mt-md-0 mt-3 address">
                     <div class="logo font-red-hat-display">
                         <a class="modal-title" id="targetModalLabel">
-                            <img style="margin-top: 0.5rem" src="@/assets/images/logo-putih.png" width="120px" />
+                            <img style="margin-top: 0.5rem" src="{{ asset('./assets/images/logo-putih.png') }}" width="120px" />
                         </a>
                     </div>
                     <div class="social-media">
@@ -274,7 +269,7 @@
                         <ul class="list-unstyled">
                             <li>
                                 <span class="text-white">
-                                    <img src="@/assets/images/logo-wa.png" alt="wa" class="img-fluid "
+                                    <img src="{{ asset('./assets/images/logo-wa.png') }}" alt="wa" class="img-fluid "
                                         width="50px" />
                                     : +62 878-7850-8854</span>
                             </li>
