@@ -26,7 +26,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.category.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group">
@@ -67,7 +67,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ route('category.update', $item->id) }}" method="POST"
+                                        <form action="{{ route('admin.category.update', $item->id) }}" method="POST"
                                             enctype="multipart/form-data">
                                             @csrf
 

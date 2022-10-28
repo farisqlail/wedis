@@ -19,7 +19,7 @@
 
     <div class="card shadow rounded mt-4" style="border: none;">
         <div class="card-body">
-            <form action="{{ route('customer.update', $customer->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.customer.update', $customer->id) }}" method="POST" enctype="multipart/form-data">
                 {{ method_field('PUT') }}
                 @csrf
 

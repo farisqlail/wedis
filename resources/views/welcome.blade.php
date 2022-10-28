@@ -15,7 +15,7 @@
     <section class="h-100 w-100 bg-white" style="box-sizing: border-box; ">
         <div class="container-xxl mx-auto p-0  position-relative header-2-1" style="font-family: 'Poppins', sans-serif">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a href="#">
+                <a href="{{ url('/') }}">
                     <img style="margin-right: 0.75rem; width: 100px;" src="{{ asset('./assets/images/Logo-Font.png') }}"
                         alt="" />
                 </a>
@@ -29,7 +29,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content bg-white border-0">
                             <div class="modal-header border-0" style="padding: 2rem; padding-bottom: 0">
-                                <a class="modal-title" id="targetModalLabel">
+                                <a href="{{ url('/') }}" class="modal-title" id="targetModalLabel">
                                     <img style="margin-top: 0.5rem" src="{{ asset('./assets/images/Logo-Font.png') }}"
                                         alt="" />
                                 </a>
@@ -39,7 +39,7 @@
                             <div class="modal-body" style="padding: 2rem; padding-top: 0; padding-bottom: 0">
                                 <ul class="navbar-nav responsive me-auto mt-2 mt-lg-0">
                                     <li class="nav-item active">
-                                        <a class="nav-link" href="#">Beranda</a>
+                                        <a class="nav-link" href="{{ url('/') }}">Beranda</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">Portfolio</a>
@@ -59,7 +59,7 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo">
                     <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Beranda</a>
+                            <a class="nav-link" href="{{ url('/') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Portfolio</a>

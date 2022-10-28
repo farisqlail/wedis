@@ -9,7 +9,7 @@
             <h1 class="h3 mb-0 text-gray-800">Halaman Artikel</h1>
         </div>
         <div class="col-md-6" align="right">
-            <a href="{{ route('blog.create') }}" class="btn btn-primary">Buat Artikel</a>
+            <a href="{{ route('admin.blog.create') }}" class="btn btn-primary">Buat Artikel</a>
         </div>
     </div>
 
@@ -36,7 +36,7 @@
                                     <img src="{{ asset('storage/blogs/' . $item->image) }}" class="img-fluid">
                                 </td>
                                 <td>
-                                    <a href="{{ route('blog.edit', $item->id) }}" class="btn btn-warning"><i class="fas fa-pen"></i></a>
+                                    <a href="{{ route('admin.blog.edit', $item->id) }}" class="btn btn-warning"><i class="fas fa-pen"></i></a>
                                     <a href="#" class="btn btn-danger delete" data-id="{{ $item->id }}"><i class="fas fa-trash-alt"></i></a>
                                 </td>
                             </tr>

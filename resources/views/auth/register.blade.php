@@ -95,6 +95,7 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="text" name="role" value="user" hidden>
                         <button class="btn btn-fill text-white d-block w-100" type="submit">
                             Daftar
                         </button>

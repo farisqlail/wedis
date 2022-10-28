@@ -80,7 +80,7 @@ class CustomerController extends Controller
                 throw $th;
             }
 
-            return redirect()->route('customer.index');
+            return redirect()->route('admin.customer.index');
         }
     }
 
@@ -152,7 +152,7 @@ class CustomerController extends Controller
                 throw $th;
             }
 
-            return redirect()->route('customer.index');
+            return redirect()->route('admin.customer.index');
         }
     }
 

@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Kebutuhan;
 use App\Models\Pemasukan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -26,13 +27,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $pemasukan = Pemasukan::sum('pemasukan');        
-        $kebutuhan = Kebutuhan::sum('pengeluaran');
-        $keuntungan = $pemasukan - $kebutuhan;
-
-        return view('admin.dashboard', [
-            'keuntungan' => $keuntungan,
-            'kebutuhan' => $kebutuhan
-        ]);	
+        if (Auth::user()->role == 'admin') {
+            $pemasukan = Pemasukan::sum('pemasukan');        
+            $kebutuhan = Kebutuhan::sum('pengeluaran');
+            $keuntungan = $pemasukan - $kebutuhan;
+    
+            return view('admin.dashboard', [
+                'keuntungan' => $keuntungan,
+                'kebutuhan' => $kebutuhan
+            ]);	
+        } elseif(Auth::user()->role == 'user') {
+            return view('userView.home');
+        }
     }
 }

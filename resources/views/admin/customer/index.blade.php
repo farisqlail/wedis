@@ -9,7 +9,7 @@
             <h1 class="h3 mb-0 text-gray-800">Halaman Customer</h1>
         </div>
         <div class="col-md-6" align="right">
-            <a href="{{ route('customer.create') }}" class="btn btn-primary">Tambah Customer</a>
+            <a href="{{ route('admin.customer.create') }}" class="btn btn-primary">Tambah Customer</a>
         </div>
     </div>
 
@@ -47,7 +47,7 @@
                                 <td>Rp. {{ number_format($item->keuntungan) }}</td>
                                 <td>
                                     @if ($item->status == 'Progress')
-                                        <a href="{{ route('customer.edit', $item->id) }}" class="btn btn-warning"><i
+                                        <a href="{{ route('admin.customer.edit', $item->id) }}" class="btn btn-warning"><i
                                                 class="fas fa-pen"></i></a>
                                         <a href="#" class="btn btn-danger delete" data-id="{{ $item->id }}"><i
                                                 class="fas fa-power-off"></i></a>

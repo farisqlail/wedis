@@ -81,7 +81,7 @@ class BlogController extends Controller
                 throw $th;
             }
 
-            return redirect()->route('blog.admin');
+            return redirect()->route('admin.blog.admin');
         }
     }
 
@@ -164,7 +164,7 @@ class BlogController extends Controller
                 throw $th;
             }
 
-            return redirect()->route('blog.admin');
+            return redirect()->route('admin.blog.admin');
         }
     }
 

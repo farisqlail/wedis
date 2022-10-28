@@ -10,7 +10,7 @@
             <h1 class="h3 mb-0 text-gray-800">Halaman Tambah Customer</h1>
         </div>
         <div class="col-md-6" align="right">
-            <a href="{{ route('customer.index') }}" class="btn btn-danger">
+            <a href="{{ route('admin.customer.index') }}" class="btn btn-danger">
                 <i class="fas fa-arrow-left"></i>
                 Kembali
             </a>
@@ -19,7 +19,7 @@
 
     <div class="card shadow rounded mt-4" style="border: none;">
         <div class="card-body">
-            <form action="{{ route('customer.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.customer.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="row">

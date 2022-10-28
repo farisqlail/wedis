@@ -10,7 +10,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{ route('home') }}">
+        <a class="nav-link" href="{{ route('admin.admin.dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -32,9 +32,9 @@
         <div id="masterProfile" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">transaksi:</h6>
-                <a class="collapse-item" href="{{ route('blog.admin') }}">Artikel</a>
-                <a class="collapse-item" href="{{ route('category.admin') }}">Category Portfolio</a>
-                <a class="collapse-item" href="{{ route('portfolio.admin') }}">Portfolio</a>
+                <a class="collapse-item" href="{{ route('admin.blog.admin') }}">Artikel</a>
+                <a class="collapse-item" href="{{ route('admin.category.admin') }}">Category Portfolio</a>
+                <a class="collapse-item" href="{{ route('admin.portfolio.admin') }}">Portfolio</a>
             </div>
         </div>
     </li>

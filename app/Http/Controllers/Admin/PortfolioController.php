@@ -80,7 +80,7 @@ class PortfolioController extends Controller
                 throw $th;
             }
 
-            return redirect()->route('portfolio.admin');
+            return redirect()->route('admin.portfolio.admin');
         }
     }
 
@@ -158,7 +158,7 @@ class PortfolioController extends Controller
                 throw $th;
             }
 
-            return redirect()->route('portfolio.admin');
+            return redirect()->route('admin.portfolio.admin');
         }
     }
 

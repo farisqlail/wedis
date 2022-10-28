@@ -66,7 +66,7 @@ class CategoryController extends Controller
                 throw $th;
             }
 
-            return redirect()->route('category.admin');
+            return redirect()->route('admin.category.admin');
         }
     }
 
@@ -121,7 +121,7 @@ class CategoryController extends Controller
                 throw $th;
             }
 
-            return redirect()->route('category.admin');
+            return redirect()->route('admin.category.admin');
         }
     }
 
