@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wedis | IT Project Solutions</title>
+    <title>Wedis | @yield('title.user')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('./frontend/css/style.css') }}">
@@ -50,7 +50,25 @@
                                 </ul>
                             </div>
                             <div class="modal-footer border-0 gap-3" style="padding: 2rem; padding-top: 0.75rem">
+                                @if (Auth::check())
+                                <div class="dropdown">
+                                    <button class="dropdown-toggle" style="border: none; border-radius: 20px;"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="https://api.zoomit.co.id/assets/img/profile-customer/default.png"
+                                            alt="Photo Profile" width="30px">
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Pengaturan</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">Logout</a></li>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </ul>
+                                </div>
+                            @else
                                 <a href="{{ route('login') }}" class="btn btn-fill text-white">Masuk</a>
+                            @endif
                             </div>
                         </div>
                     </div>
@@ -70,7 +88,21 @@
                     </ul>
                     <div class="gap-3">
                         @if (Auth::check())
-                            {{-- <a href="{{ route('user.dashboard') }}" class="btn btn-fill text-white">Dashboard</a> --}}
+                            <div class="dropdown">
+                                <button class="dropdown-toggle" style="border: none; border-radius: 20px;"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="https://api.zoomit.co.id/assets/img/profile-customer/default.png"
+                                        alt="Photo Profile" width="30px">
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Pengaturan</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">Logout</a></li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </ul>
+                            </div>
                         @else
                             <a href="{{ route('login') }}" class="btn btn-fill text-white">Masuk</a>
                         @endif
@@ -80,15 +112,10 @@
         </div>
     </section>
     <div class="container">
-        @yield('content')
+        @yield('user.content')
     </div>
 
     <footer class="page-footer font-small blue">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-            integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-            crossorigin="anonymous" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"
-            type="text/css" />
 
         <div class="container text-md-left">
             <div class="row">

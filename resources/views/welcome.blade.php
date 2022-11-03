@@ -50,7 +50,28 @@
                                 </ul>
                             </div>
                             <div class="modal-footer border-0 gap-3" style="padding: 2rem; padding-top: 0.75rem">
-                                <a href="{{ route('login') }}" class="btn btn-fill text-white">Masuk</a>
+                                @if (Auth::check())
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle" style="border: none; border-radius: 20px;"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img src="https://api.zoomit.co.id/assets/img/profile-customer/default.png"
+                                                alt="Photo Profile" width="30px">
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">Pengaturan</a></li>
+                                            <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">Logout</a>
+                                            </li>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                class="d-none">
+                                                @csrf
+                                            </form>
+                                        </ul>
+                                    </div>
+                                @else
+                                    <a href="{{ route('login') }}" class="btn btn-fill text-white">Masuk</a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -69,7 +90,28 @@
                         </li>
                     </ul>
                     <div class="gap-3">
-                        <a href="{{ route('login') }}" class="btn btn-fill text-white">Masuk</a>
+                        @if (Auth::check())
+                            <div class="dropdown">
+                                <button class="dropdown-toggle" style="border: none; border-radius: 20px;"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="https://api.zoomit.co.id/assets/img/profile-customer/default.png"
+                                        alt="Photo Profile" width="30px">
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Pengaturan</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">Logout</a>
+                                    </li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
+                                </ul>
+                            </div>
+                        @else
+                            <a href="{{ route('login') }}" class="btn btn-fill text-white">Masuk</a>
+                        @endif
                     </div>
                 </div>
             </nav>
@@ -83,8 +125,10 @@
                         <h1 class="title-text-big">
                             Wedis
                         </h1>
-                        <p style="margin-top: -20px; font-size: 20px;" class="text-muted mb-5">penyedia layanan untuk
-                            membantu menyelesaikan proyek</p>
+                        <p style="margin-top: -20px; font-size: 20px;" align="left" class="text-muted mb-5">
+                            penyedia
+                            layanan untuk
+                            membantu menyelesaikan proyek IT</p>
                         <div
                             class="d-flex flex-sm-row flex-column align-items-center mx-lg-0 mx-auto justify-content-center gap-3">
                             <button class="btn d-inline-flex mb-md-0 btn-try text-white">
@@ -159,17 +203,16 @@
                         </div>
                         <div class="flex-grow-1 text-lg-start text-center card-text">
                             <h3 class="card-title">
-                                Fast Business Management in 30 minutes
+                                Konsultasikan bisnis atau proyek anda sekarang
                             </h3>
                             <p class="card-caption">
-                                Our tools for business analysis helps an organization
-                                understand<br class="d-none d-lg-block" />
-                                market or business development.
+                                Kami bantu untuk analisis bisnis membantu organisasi memahami pengembangan pasar atau
+                                bisnis.
                             </p>
                         </div>
                         <div class="card-btn-space">
-                            <button class="btn btn-card text-white">Buy Now</button>
-                            <button class="btn btn-outline">Demo Version</button>
+                            <button class="btn btn-card text-white">Konsultasi</button>
+                            <button class="btn btn-outline">Portfolio</button>
                         </div>
                     </div>
                 </div>
@@ -198,21 +241,21 @@
                         </p>
                     </div>
                 </div>
-            </div>
-            <div class="d-flex align-items-center justify-content-center gap-4 porto-img">
-                <div>
-                    <img src="https://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content-workly/porto-1.png"
-                        class="img-fluid" />
-                </div>
-                <div class="d-flex flex-column gap-3">
-                    <img src="https://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content-workly/porto-2.png"
-                        class="img-fluid">
-                    <img src="https://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content-workly/porto-3.png"
-                        class="img-fluid mt-auto" />
-                </div>
-                <div>
-                    <img src="https://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content-workly/porto-4.png"
-                        class="img-fluid" />
+                <div class="d-flex align-items-center justify-content-center gap-4 porto-img">
+                    <div>
+                        <img src="https://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content-workly/porto-1.png"
+                            class="img-fluid" />
+                    </div>
+                    <div class="d-flex flex-column gap-3">
+                        <img src="https://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content-workly/porto-2.png"
+                            class="img-fluid">
+                        <img src="https://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content-workly/porto-3.png"
+                            class="img-fluid mt-auto" />
+                    </div>
+                    <div>
+                        <img src="https://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content-workly/porto-4.png"
+                            class="img-fluid" />
+                    </div>
                 </div>
             </div>
         </section>
@@ -231,7 +274,8 @@
                 <div class="col-md-6 mt-md-0 mt-3 address">
                     <div class="logo font-red-hat-display">
                         <a class="modal-title" id="targetModalLabel">
-                            <img style="margin-top: 0.5rem" src="{{ asset('./assets/images/logo-putih.png') }}" width="120px" />
+                            <img style="margin-top: 0.5rem" src="{{ asset('./assets/images/logo-putih.png') }}"
+                                width="120px" />
                         </a>
                     </div>
                     <div class="social-media">
@@ -269,8 +313,8 @@
                         <ul class="list-unstyled">
                             <li>
                                 <span class="text-white">
-                                    <img src="{{ asset('./assets/images/logo-wa.png') }}" alt="wa" class="img-fluid "
-                                        width="50px" />
+                                    <img src="{{ asset('./assets/images/logo-wa.png') }}" alt="wa"
+                                        class="img-fluid " width="50px" />
                                     : +62 878-7850-8854</span>
                             </li>
                         </ul>

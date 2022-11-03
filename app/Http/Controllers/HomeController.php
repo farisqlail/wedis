@@ -37,7 +37,7 @@ class HomeController extends Controller
                 'kebutuhan' => $kebutuhan
             ]);	
         } elseif(Auth::user()->role == 'user') {
-            return view('userView.home');
+            return view('userView.index');
         }
     }
 }
