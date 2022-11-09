@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('./frontend/css/style.css') }}">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> --}}
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="{{ asset('./assets/images/logo-putih.png') }}" type="image/x-icon">
 </head>
 
@@ -15,7 +17,7 @@
     <section class="h-100 w-100 bg-white" style="box-sizing: border-box; ">
         <div class="container-xxl mx-auto p-0  position-relative header-2-1" style="font-family: 'Poppins', sans-serif">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a href="#">
+                <a href="{{ url('/') }}">
                     <img style="margin-right: 0.75rem; width: 100px;" src="{{ asset('./assets/images/Logo-Font.png') }}"
                         alt="" />
                 </a>
@@ -99,6 +101,7 @@
                                         alt="Photo Profile" width="30px">
                                 </button>
                                 <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ url('/home') }}">Profile</a></li>
                                     <li><a class="dropdown-item" href="#">Pengaturan</a></li>
                                     <li><a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
@@ -188,6 +191,7 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     @stack('scripts')
 </body>
 

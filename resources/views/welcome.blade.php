@@ -58,6 +58,7 @@
                                                 alt="Photo Profile" width="30px">
                                         </button>
                                         <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="{{ url('/home') }}">Profile</a></li>
                                             <li><a class="dropdown-item" href="#">Pengaturan</a></li>
                                             <li><a class="dropdown-item" href="{{ route('logout') }}"
                                                     onclick="event.preventDefault();
@@ -132,9 +133,9 @@
                             membantu menyelesaikan proyek IT</p>
                         <div
                             class="d-flex flex-sm-row flex-column align-items-center mx-lg-0 mx-auto justify-content-center gap-3">
-                            <button class="btn d-inline-flex mb-md-0 btn-try text-white">
+                            <a href="whatsapp://send?text=Halo saya mau konsultasi bersama Wedis&phone=+6287878508854" class="btn d-inline-flex mb-md-0 btn-try text-white">
                                 Konsultasi Gratis
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <!-- Right Column -->

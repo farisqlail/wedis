@@ -22,7 +22,7 @@
                 <div class="card shadow" style="border: none; width: 80%; border-radius: 10px;" align="left">
                     <div class="card-body">
                         <h5>Total Projek Kamu</h3>
-                            <span class="text-success">5</span>
+                            <span class="text-success"><i class='bx bxs-file bx-sm'></i> 5</span>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <div class="card shadow" style="border: none; width: 80%; border-radius: 10px;" align="left">
                     <div class="card-body">
                         <h5>Status Projek Kamu</h5>
-                        <span class="text-warning">Tahap Development</span>
+                        <span class="text-warning"><i class='bx bx-task bx-sm'></i> Tahap Development</span>
                     </div>
                 </div>
             </div>
@@ -41,10 +41,15 @@
             <div class="col-md-4">
                 <div class="card mt-5 mb-5 shadow" style="border: none; width: 70%; border-radius: 10px;" align="left">
                     <ul class="list-group" style="border: none; border-radius: 10px;">
-                        <li class="list-group-item"><a href="" class="text-dark"
+                        <li class="list-group-item" id="dash"><a href="#Dashboard" class="text-dark"
+                                style="text-decoration: none;">Dashboard</a></li>
+                        <li class="list-group-item" id="req"><a href="#Request-Projek" class="text-dark"
                                 style="text-decoration: none;">Request Projek</a></li>
-                        <li class="list-group-item"><a href="" class="text-dark"
-                                style="text-decoration: none;">Kontrak Projek</a></li>
+                        <li class="list-group-item" id="kontrak"><a href="#Kontrak-projek" class="text-dark"
+                                style="text-decoration: none;">Invoice Projek</a></li>
+                        <li class="list-group-item"><a
+                                href="whatsapp://send?text=Halo saya mau konsultasi&phone=+6287878508854" class="text-dark"
+                                style="text-decoration: none;">Konsultasi</a></li>
                     </ul>
                 </div>
             </div>
@@ -52,6 +57,52 @@
                 <div class="card mt-5 mb-5 shadow" style="border: none; width: 90%; border-radius: 10px;" align="left">
                     <div class="card-body">
                         <div id="userStat"></div>
+
+                        <div id="requestProjek">
+                            <h4>Request Projek</h4>
+                            <form action="" method="post">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-4">
+                                            <label for="">Nama Lengkap</label>
+                                            <input type="text" class="form-control mt-2" name="nama_customer" value="{{ Auth::user()->name }}" disabled>
+                                        </div>
+
+                                        <div class="form-group mt-4">
+                                            <label for="">Dana</label>
+                                            <input type="number" class="form-control mt-2" name="nama_customer" placeholder="Rp.500.000" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group mt-4">
+                                            <label for="">Nama Projek</label>
+                                            <input type="text" class="form-control mt-2" name="nama_project" placeholder="Website keuangan..." required>
+                                        </div>
+                                        <div class="form-group mt-4">
+                                            <label for="">Kategori Projek</label>
+                                            <select name="kategori_projek" class="form-control mt-2" id="" required>
+                                                <option value="">Pilih Kategori</option>
+                                                <option value="Web">Web</option>
+                                                <option value="Mobile">Mobile</option>
+                                                <option value="Dokumen">Dokumen</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div align="right">
+                                    <button class="btn btn-request mt-4" style="" type="submit">Request</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div id="kontrakProjek">
+                            <h4>Invoice Projek</h4>
+
+                            <div class="mt-3" align="center">
+                                <span>Belum ada Invoice</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -372,5 +423,47 @@
                 ]
             }
         });
+
+        var btnReq = document.getElementById('req');
+        var btnDash = document.getElementById('dash');
+        var btnKon = document.getElementById('kontrak');
+        var reqProjek = document.getElementById('requestProjek')
+        var konProjek = document.getElementById('kontrakProjek');
+
+        if (reqProjek.style.display = 'none') {
+            btnReq.addEventListener('click', function() {
+                reqProjek.style.display = 'block';
+                userStat.style.display = 'none';
+                konProjek.style.display = 'none';
+            });
+        } else {
+            userStat.style.display = 'block';
+            konProjek.style.display = 'block';
+            reqProjek.style.display = 'none';
+        }
+
+        if (userStat.style.display = 'block') {
+            btnDash.addEventListener('click', function() {
+                userStat.style.display = 'block';
+                reqProjek.style.display = 'none';
+                konProjek.style.display = 'none';
+            });
+        } else {
+            reqProjek.style.display = 'block';
+            konProjek.style.display = 'block';
+            userStat.style.display = 'none';
+        }
+
+        if (konProjek.style.display = 'none') {
+            btnKon.addEventListener('click', function() {
+                konProjek.style.display = 'block';
+                reqProjek.style.display = 'none';
+                userStat.style.display = 'none';
+            });
+        } else {
+            reqProjek.style.display = 'block';
+            userStat.style.display = 'block';
+            konProjek.style.display = 'none';
+        }
     </script>
 @endpush
