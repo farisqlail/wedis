@@ -98,6 +98,7 @@
                                         alt="Photo Profile" width="30px">
                                 </button>
                                 <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ url('/home') }}">Profile</a></li>
                                     <li><a class="dropdown-item" href="#">Pengaturan</a></li>
                                     <li><a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

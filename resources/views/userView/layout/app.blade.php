@@ -51,24 +51,28 @@
                             </div>
                             <div class="modal-footer border-0 gap-3" style="padding: 2rem; padding-top: 0.75rem">
                                 @if (Auth::check())
-                                <div class="dropdown">
-                                    <button class="dropdown-toggle" style="border: none; border-radius: 20px;"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="https://api.zoomit.co.id/assets/img/profile-customer/default.png"
-                                            alt="Photo Profile" width="30px">
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Pengaturan</a></li>
-                                        <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">Logout</a></li>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form>
-                                    </ul>
-                                </div>
-                            @else
-                                <a href="{{ route('login') }}" class="btn btn-fill text-white">Masuk</a>
-                            @endif
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle" style="border: none; border-radius: 20px;"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img src="https://api.zoomit.co.id/assets/img/profile-customer/default.png"
+                                                alt="Photo Profile" width="30px">
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="{{ url('/home') }}">Profile</a></li>
+                                            <li><a class="dropdown-item" href="#">Pengaturan</a></li>
+                                            <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">Logout</a>
+                                            </li>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                class="d-none">
+                                                @csrf
+                                            </form>
+                                        </ul>
+                                    </div>
+                                @else
+                                    <a href="{{ route('login') }}" class="btn btn-fill text-white">Masuk</a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -96,9 +100,12 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#">Pengaturan</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">Logout</a></li>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">Logout</a>
+                                    </li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
                                         @csrf
                                     </form>
                                 </ul>
@@ -175,6 +182,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
     </script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    @stack('scripts')
 </body>
 
 </html>

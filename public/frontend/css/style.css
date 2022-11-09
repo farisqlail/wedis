@@ -695,3 +695,10 @@ body footer li {
         width: 58.333333%;
     }
 }
+
+.list-group-item:hover {
+    background-color: #39465b3b;
+    transition: 0.05ms;
+}
+
+
