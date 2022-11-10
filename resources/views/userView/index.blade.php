@@ -60,17 +60,18 @@
 
                         <div id="requestProjek">
                             <h4>Request Projek</h4>
-                            <form action="" method="post">
+                            <form action="{{ route('user.projek.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group mt-4">
                                             <label for="">Nama Lengkap</label>
-                                            <input type="text" class="form-control mt-2" name="nama_customer" value="{{ Auth::user()->name }}" disabled>
+                                            <input type="text" class="form-control mt-2" name="nama_customer" value="{{ Auth::user()->name }}" readonly>
                                         </div>
 
                                         <div class="form-group mt-4">
                                             <label for="">Dana</label>
-                                            <input type="number" class="form-control mt-2" name="nama_customer" placeholder="Rp.500.000" required>
+                                            <input type="number" class="form-control mt-2" name="dana" placeholder="Rp.500.000" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -80,7 +81,7 @@
                                         </div>
                                         <div class="form-group mt-4">
                                             <label for="">Kategori Projek</label>
-                                            <select name="kategori_projek" class="form-control mt-2" id="" required>
+                                            <select name="kategori" class="form-control mt-2" id="" required>
                                                 <option value="">Pilih Kategori</option>
                                                 <option value="Web">Web</option>
                                                 <option value="Mobile">Mobile</option>
@@ -91,7 +92,7 @@
                                 </div>
                                 
                                 <div align="right">
-                                    <button class="btn btn-request mt-4" style="" type="submit">Request</button>
+                                    <button type="submit" class="btn btn-request mt-4" >Request</button>
                                 </div>
                             </form>
                         </div>
