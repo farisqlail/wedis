@@ -28,16 +28,23 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::user()->role == 'admin') {
-            $pemasukan = Pemasukan::sum('pemasukan');        
+            $pemasukan = Pemasukan::sum('pemasukan');
             $kebutuhan = Kebutuhan::sum('pengeluaran');
             $keuntungan = $pemasukan - $kebutuhan;
-    
+
             return view('admin.dashboard', [
                 'keuntungan' => $keuntungan,
                 'kebutuhan' => $kebutuhan
-            ]);	
-        } elseif(Auth::user()->role == 'user') {
-            return view('userView.index');
+            ]);
+        } elseif (Auth::user()->role == 'user') {
+
+            $projek      = Customer::where('id_user', Auth::user()->id)->get();
+            $countProjek = count($projek);
+
+            return view('userView.index', [
+                'projek' => $projek,
+                'countProjek' => $countProjek
+            ]);
         }
     }
 }

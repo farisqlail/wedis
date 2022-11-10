@@ -13,6 +13,7 @@ class Customer extends Model
     
     protected $fillable = [
         'id_developer',
+        'id_user',
         'nama_project',
         'nama_customer',
         'dana',

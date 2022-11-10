@@ -22,7 +22,7 @@
                 <div class="card shadow" style="border: none; width: 80%; border-radius: 10px;" align="left">
                     <div class="card-body">
                         <h5>Total Projek Kamu</h3>
-                            <span class="text-success"><i class='bx bxs-file bx-sm'></i> 5</span>
+                            <span class="text-success"><i class='bx bxs-file bx-sm'></i> {{ $countProjek }}</span>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <div class="card shadow" style="border: none; width: 80%; border-radius: 10px;" align="left">
                     <div class="card-body">
                         <h5>Status Projek Kamu</h5>
-                        <span class="text-warning"><i class='bx bx-task bx-sm'></i> Tahap Development</span>
+                        <span class="text-warning"><i class='bx bx-task bx-sm'></i> Tahap {{ $projek[0]->status }}</span>
                     </div>
                 </div>
             </div>
@@ -45,6 +45,8 @@
                                 style="text-decoration: none;">Dashboard</a></li>
                         <li class="list-group-item" id="req"><a href="#Request-Projek" class="text-dark"
                                 style="text-decoration: none;">Request Projek</a></li>
+                        <li class="list-group-item" id="listPro"><a href="#List-Projek" class="text-dark"
+                                style="text-decoration: none;">Projek Ku</a></li>
                         <li class="list-group-item" id="kontrak"><a href="#Kontrak-projek" class="text-dark"
                                 style="text-decoration: none;">Invoice Projek</a></li>
                         <li class="list-group-item"><a
@@ -66,18 +68,21 @@
                                     <div class="col-md-6">
                                         <div class="form-group mt-4">
                                             <label for="">Nama Lengkap</label>
-                                            <input type="text" class="form-control mt-2" name="nama_customer" value="{{ Auth::user()->name }}" readonly>
+                                            <input type="text" class="form-control mt-2" name="nama_customer"
+                                                value="{{ Auth::user()->name }}" readonly>
                                         </div>
 
                                         <div class="form-group mt-4">
                                             <label for="">Dana</label>
-                                            <input type="number" class="form-control mt-2" name="dana" placeholder="Rp.500.000" required>
+                                            <input type="number" class="form-control mt-2" name="dana"
+                                                placeholder="Rp.500.000" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mt-4">
                                             <label for="">Nama Projek</label>
-                                            <input type="text" class="form-control mt-2" name="nama_project" placeholder="Website keuangan..." required>
+                                            <input type="text" class="form-control mt-2" name="nama_project"
+                                                placeholder="Website keuangan..." required>
                                         </div>
                                         <div class="form-group mt-4">
                                             <label for="">Kategori Projek</label>
@@ -90,9 +95,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div align="right">
-                                    <button type="submit" class="btn btn-request mt-4" >Request</button>
+                                    <button type="submit" class="btn btn-request mt-4">Request</button>
                                 </div>
                             </form>
                         </div>
@@ -104,6 +109,7 @@
                                 <span>Belum ada Invoice</span>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

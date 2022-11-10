@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Models\Developer;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
@@ -60,7 +61,8 @@ class ProjekController extends Controller
             try {
                 Alert::success('Hey Projek mu telah dikirim', 'Tunggu balasan dari kami');
 
-                $customer = new Customer();
+                $customer                   = new Customer();
+                $customer->id_user          = Auth::user()->id;
                 $customer->nama_project     = $request->nama_project;
                 $customer->nama_customer    = $request->nama_customer;
                 $customer->dana             = $request->dana;
