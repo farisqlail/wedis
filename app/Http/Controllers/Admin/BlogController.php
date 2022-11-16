@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Blog;
+use App\Models\Customer;
 
 class BlogController extends Controller
 {
@@ -21,6 +22,7 @@ class BlogController extends Controller
     public function index()
     {
         $blog = Blog::all();
+        $customer = Customer::all();
 
         $response = [
             'success' => true,
@@ -29,7 +31,8 @@ class BlogController extends Controller
         ];
 
         return view('admin.blogs.index', [
-            'blog' => $blog
+            'blog' => $blog,
+            'customer' => $customer
         ]);
     }
 

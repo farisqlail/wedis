@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\Pemasukan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -18,9 +19,11 @@ class PemasukanController extends Controller
     public function index()
     {
         $pemasukan = Pemasukan::all();
+        $customer = Customer::all();
 
         return view('admin.pemasukan.index', [
-            'pemasukan' => $pemasukan
+            'pemasukan' => $pemasukan,
+            'customer'  => $customer
         ]);
     }
 

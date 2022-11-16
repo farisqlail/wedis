@@ -30,7 +30,14 @@
                 <div class="card shadow" style="border: none; width: 80%; border-radius: 10px;" align="left">
                     <div class="card-body">
                         <h5>Status Projek Kamu</h5>
-                        <span class="text-warning"><i class='bx bx-task bx-sm'></i> Tahap {{ $projek[0]->status }}</span>
+                        {{-- <span class="text-warning"><i class='bx bx-task bx-sm'></i> Tahap {{ $projek->status }}</span> --}}
+                        @if ($projek[0]->status == 'Selesai')
+                            <span class="text-success"><i class='bx bx-check bx-sm'></i> Sudah Diverifikasi</span>
+                        @elseif($projek[0]->status == 'Progress')
+                            <span class="text-warning"><i class='bx bx-task bx-sm'></i> Tahap {{ $projek[0]->status }}</span>
+                        @elseif($projek[0]->status == 'Ditolak')
+                            <span class="text-danger"><i class='bx bx-task bx-sm'></i> Tahap {{ $projek[0]->status }}</span>
+                        @endif
                     </div>
                 </div>
             </div>

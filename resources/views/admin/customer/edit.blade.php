@@ -10,7 +10,7 @@
             <h1 class="h3 mb-0 text-gray-800">Halaman Edit Customer</h1>
         </div>
         <div class="col-md-6" align="right">
-            <a href="{{ route('customer.index') }}" class="btn btn-danger">
+            <a href="{{ route('admin.customer.index') }}" class="btn btn-danger">
                 <i class="fas fa-arrow-left"></i>
                 Kembali
             </a>
@@ -49,6 +49,14 @@
                                 @foreach ($developer as $item)
                                     <Option value="{{ $item->id }}">{{ $item->nama_developer }}</Option>
                                 @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Status</label>
+                            <select name="status" class="form-control">
+                               <option value="Progress">Progress</option>
+                               <option value="Selesai">Selesai</option>
+                               <option value="Ditolak">Ditolak</option>
                             </select>
                         </div>
                     </div>

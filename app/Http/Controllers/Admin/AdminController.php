@@ -16,8 +16,10 @@ class AdminController extends Controller
     public function index()
     {
         $keuntungan = Customer::sum('keuntungan');
+        $customer = Customer::all();
         return view('admin.dashboard', [
-            'keuntungan' => $keuntungan
+            'keuntungan' => $keuntungan,
+            'customer' => $customer
         ]);	
     }
 }

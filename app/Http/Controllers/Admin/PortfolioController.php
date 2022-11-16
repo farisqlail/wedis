@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Customer;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -20,12 +21,14 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        $portfolio = Portfolio::all();
+        $portfolio  = Portfolio::all();
         $categories = Category::all();
+        $customer   = Customer::all();
 
         return view('admin.portfolios.index', [
-            'portfolio' => $portfolio,
-            'categories' => $categories
+            'portfolio'     => $portfolio,
+            'categories'    => $categories,
+            'customer'      => $customer
         ]);
     }
 

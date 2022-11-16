@@ -9,6 +9,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
+use App\Models\Customer;
 
 class CategoryController extends Controller
 {
@@ -20,9 +21,11 @@ class CategoryController extends Controller
     public function index()
     {
         $category = Category::all();
+        $customer = Customer::all();
 
         return view('admin.categories.index', [
-            'category' => $category
+            'category' => $category,
+            'customer' => $customer
         ]);
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\Developer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -18,9 +19,11 @@ class DeveloperController extends Controller
     public function index()
     {
         $developer = Developer::all();
+        $customer = Customer::all();
 
         return view('admin.developer.index', [
-            'developer' => $developer
+            'developer' => $developer,
+            'customer' => $customer
         ]);
     }
 

@@ -22,10 +22,12 @@ class KebutuhanController extends Controller
     {
         $pemasukan = Pemasukan::all();
         $kebutuhan = Kebutuhan::all();
+        $customer = Customer::all();
 
         return view('admin.kebutuhan.index', [
             'pemasukan' => $pemasukan,
-            'kebutuhan' => $kebutuhan
+            'kebutuhan' => $kebutuhan,
+            'customer'  => $customer
         ]);
     }
 

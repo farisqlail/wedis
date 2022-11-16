@@ -21,10 +21,17 @@ class CustomerController extends Controller
     public function index()
     {
         $customer = Customer::join('developers as dev', 'dev.id', '=', 'customers.id_developer')->get();
+        if (empty($customer->id_developer)) {
+            $customer = Customer::all();
 
-        return view('admin.customer.index', [
-            'customer' => $customer
-        ]);
+            return view('admin.customer.index', [
+                'customer' => $customer
+            ]);
+        } else {
+            return view('admin.customer.index', [
+                'customer' => $customer
+            ]);
+        }
     }
 
     /**
@@ -144,6 +151,7 @@ class CustomerController extends Controller
                 $customer->nama_project  = $request->nama_project;
                 $customer->nama_customer = $request->nama_customer;
                 $customer->id_developer = $request->id_developer;
+                $customer->status = $request->status;
                 $customer->dana = $request->dana;
                 $customer->status = 'Progress';
 

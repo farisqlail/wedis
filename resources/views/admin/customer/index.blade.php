@@ -40,8 +40,10 @@
                                 <td>
                                     @if ($item->status == 'Progress')
                                     <span class="badge badge-warning">Progress</span>
-                                    @else
+                                    @elseif($item->status == 'Selesai')
                                     <span class="badge badge-danger">Done</span>
+                                    @else
+                                    <span class="badge badge-danger">Ditolak</span>
                                     @endif
                                 </td>
                                 <td>Rp. {{ number_format($item->keuntungan) }}</td>
