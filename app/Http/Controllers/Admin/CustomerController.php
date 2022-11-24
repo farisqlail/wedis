@@ -20,14 +20,17 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customer = Customer::join('developers as dev', 'dev.id', '=', 'customers.id_developer')->get();
-        if (empty($customer->id_developer)) {
-            $customer = Customer::all();
+        $dev = Developer::all();
+
+        if ($dev[0]['id'] == 0) {
+            $customer = Customer::join('developers as dev', 'dev.id', '=', 'customers.id_developer')->get();
 
             return view('admin.customer.index', [
                 'customer' => $customer
             ]);
         } else {
+            $customer = Customer::all();
+
             return view('admin.customer.index', [
                 'customer' => $customer
             ]);
@@ -75,12 +78,13 @@ class CustomerController extends Controller
             try {
                 Alert::success('success', 'Berhasil Menambah Customer');
 
-                $customer = new Customer();
-                $customer->nama_project  = $request->nama_project;
-                $customer->nama_customer = $request->nama_customer;
-                $customer->id_developer = $request->id_developer;
-                $customer->dana = $request->dana;
-                $customer->status = 'Progress';
+                $customer                   = new Customer();
+                $customer->id_developer     = $request->id_developer;
+                $customer->nama_project     = $request->nama_project;
+                $customer->nama_customer    = $request->nama_customer;
+                $customer->id_developer     = $request->id_developer;
+                $customer->dana             = $request->dana;
+                $customer->status           = 'Progress';
 
                 $customer->save();
             } catch (\Throwable $th) {

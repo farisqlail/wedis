@@ -31,7 +31,7 @@
                                     <span class="badge badge-warning">Progress</span>
                                 </td>
                                 <td>
-                                    <a href="{{ route('pembayaran.detail', $item->id) }}" class="btn btn-info btn-sm">Detail Project</a>
+                                    <a href="{{ route('admin.pembayaran.detail', $item->id) }}" class="btn btn-info btn-sm">Detail Project</a>
                                 </td>
                             </tr>
                         @endforeach

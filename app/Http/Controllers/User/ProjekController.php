@@ -63,6 +63,7 @@ class ProjekController extends Controller
 
                 $customer                   = new Customer();
                 $customer->id_user          = Auth::user()->id;
+                $customer->id_developer     = $request->id_developer;
                 $customer->nama_project     = $request->nama_project;
                 $customer->nama_customer    = $request->nama_customer;
                 $customer->dana             = $request->dana;

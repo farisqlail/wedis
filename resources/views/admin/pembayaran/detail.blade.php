@@ -9,7 +9,7 @@
             <h1 class="h3 mb-0 text-gray-800">Halaman Pembayaran</h1>
         </div>
         <div class="col-md-6" align="right">
-            <a href="{{ route('pembayaran.index') }}" class="btn btn-danger">
+            <a href="{{ route('admin.pembayaran.index') }}" class="btn btn-danger">
                 <i class="fas fa-arrow-left"></i>
                 Kembali
             </a>
@@ -37,7 +37,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('pembayaran.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.pembayaran.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group">
@@ -82,7 +82,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('pembayaran.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.pembayaran.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group">
@@ -145,7 +145,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="{{ route('pembayaran.update', $item->id) }}" method="POST"
+                                                <form action="{{ route('admin.pembayaran.update', $item->id) }}" method="POST"
                                                     enctype="multipart/form-data">
                                                     {{ method_field('PUT') }}
                                                     @csrf

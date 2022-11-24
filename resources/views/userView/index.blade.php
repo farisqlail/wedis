@@ -30,13 +30,19 @@
                 <div class="card shadow" style="border: none; width: 80%; border-radius: 10px;" align="left">
                     <div class="card-body">
                         <h5>Status Projek Kamu</h5>
-                        {{-- <span class="text-warning"><i class='bx bx-task bx-sm'></i> Tahap {{ $projek->status }}</span> --}}
-                        @if ($projek[0]->status == 'Selesai')
-                            <span class="text-success"><i class='bx bx-check bx-sm'></i> Sudah Diverifikasi</span>
-                        @elseif($projek[0]->status == 'Progress')
-                            <span class="text-warning"><i class='bx bx-task bx-sm'></i> Tahap {{ $projek[0]->status }}</span>
-                        @elseif($projek[0]->status == 'Ditolak')
-                            <span class="text-danger"><i class='bx bx-task bx-sm'></i> Tahap {{ $projek[0]->status }}</span>
+                        @if (empty($projek))
+                            <span class="text-danger"><i class='bx bx-task bx-sm mt-1'></i> Hei kamu belum buat projek di
+                                Wedis!</span>
+                        @elseif(!empty($projek))
+                            @if ($projek->status == 'Selesai')
+                                <span class="text-success"><i class='bx bx-check bx-sm'></i> Sudah Diverifikasi</span>
+                            @elseif($projek->status == 'Progress')
+                                <span class="text-warning"><i class='bx bx-task bx-sm'></i> Tahap
+                                    {{ $projek->status }}</span>
+                            @elseif($projek->status == 'Ditolak')
+                                <span class="text-danger"><i class='bx bx-task bx-sm'></i> Tahap
+                                    {{ $projek->status }}</span>
+                            @endif
                         @endif
                     </div>
                 </div>
@@ -71,6 +77,7 @@
                             <h4>Request Projek</h4>
                             <form action="{{ route('user.projek.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                <input type="number" name="id_developer" value="0" hidden>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group mt-4">

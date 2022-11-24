@@ -38,8 +38,9 @@ class HomeController extends Controller
             ]);
         } elseif (Auth::user()->role == 'user') {
 
-            $projek      = Customer::where('id_user', Auth::user()->id)->get();
-            $countProjek = count($projek);
+            $projek      = Customer::where('id_user', Auth::user()->id)->first();
+            $projekCount = Customer::where('id_user', Auth::user()->id)->where('status', 'Selesai')->get();
+            $countProjek = count($projekCount);
 
             return view('userView.index', [
                 'projek' => $projek,
