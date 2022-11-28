@@ -22,7 +22,7 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        $customer  = Customer::where('status', 'Progress')->get();
+        $customer  = Customer::where('status', 'Development')->get();
 
         return view('admin.pembayaran.index', [
             'customer' => $customer

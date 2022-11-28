@@ -39,11 +39,13 @@
                                 <td>Rp. {{ number_format($item->dana) }}</td>
                                 <td>
                                     @if ($item->status == 'Progress')
-                                    <span class="badge badge-warning">Progress</span>
+                                        <span class="badge badge-warning">Progress</span>
                                     @elseif($item->status == 'Selesai')
-                                    <span class="badge badge-danger">Done</span>
-                                    @else
-                                    <span class="badge badge-danger">Ditolak</span>
+                                        <span class="badge badge-danger">Done</span>
+                                    @elseif($item->status == 'Development')
+                                        <span class="badge badge-info">Development</span>
+                                    @elseif($item->status == 'Ditolak')
+                                        <span class="badge badge-danger">Ditolak</span>
                                     @endif
                                 </td>
                                 <td>Rp. {{ number_format($item->keuntungan) }}</td>
@@ -53,7 +55,12 @@
                                                 class="fas fa-pen"></i></a>
                                         <a href="#" class="btn btn-danger delete" data-id="{{ $item->id }}"><i
                                                 class="fas fa-power-off"></i></a>
-                                    @else
+                                    @elseif($item->status == 'Development')
+                                        <a href="{{ route('admin.customer.edit', $item->id) }}" class="btn btn-warning"><i
+                                                class="fas fa-pen"></i></a>
+                                        <a href="#" class="btn btn-danger delete" data-id="{{ $item->id }}"><i
+                                                class="fas fa-power-off"></i></a>
+                                    @elseif($item->status == 'Selesai')
                                         <span class="badge badge-success">Project Done</span>
                                     @endif
                                 </td>

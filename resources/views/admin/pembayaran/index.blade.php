@@ -28,7 +28,7 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->nama_project }}</td>
                                 <td>
-                                    <span class="badge badge-warning">Progress</span>
+                                    <span class="badge badge-info">Development</span>
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.pembayaran.detail', $item->id) }}" class="btn btn-info btn-sm">Detail Project</a>

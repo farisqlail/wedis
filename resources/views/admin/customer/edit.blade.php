@@ -47,23 +47,27 @@
                             <select name="id_developer" class="form-control">
                                 <option value="">Pilih Developer</option>
                                 @foreach ($developer as $item)
-                                    <Option value="{{ $item->id }}">{{ $item->nama_developer }}</Option>
+                                    @if ($item->id != 1)
+                                        <Option value="{{ $item->id }}" selected>{{ $item->nama_developer }}</Option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="">Status</label>
                             <select name="status" class="form-control">
-                               <option value="Progress">Progress</option>
-                               <option value="Selesai">Selesai</option>
-                               <option value="Ditolak">Ditolak</option>
+                                <option value="Progress">Progress</option>
+                                <option value="Development">Development</option>
+                                <option value="Selesai">Selesai</option>
+                                <option value="Ditolak">Ditolak</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Dana</label>
-                            <input type="text" class="form-control" name="dana" id="harga" value="{{ $customer->dana }}">
+                            <input type="text" class="form-control" name="dana" id="harga"
+                                value="{{ $customer->dana }}">
                         </div>
                     </div>
                 </div>

@@ -46,7 +46,9 @@
                             <select name="id_developer" class="form-control">
                                 <option value="">Pilih Developer</option>
                                 @foreach ($developer as $item)
-                                    <Option value="{{ $item->id }}">{{ $item->nama_developer }}</Option>
+                                    @if ($item->id != 1)
+                                        <Option value="{{ $item->id }}" selected>{{ $item->nama_developer }}</Option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>

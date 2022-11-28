@@ -16,6 +16,9 @@ class DeveloperSeeder extends Seeder
     {
         DB::table('developers')->insert([
             [
+                'nama_developer' => 'Belum terpilih'
+            ],
+            [
                 'nama_developer' => 'Asep'
             ],
             [

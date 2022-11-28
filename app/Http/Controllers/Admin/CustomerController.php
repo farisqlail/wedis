@@ -22,21 +22,11 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $dev = Developer::all();
+        $customer = Customer::join('developers as dev', 'dev.id', '=', 'customers.id_developer')->get();
 
-        if ($dev[0]['id'] == 0) {
-            $customer = Customer::join('developers as dev', 'dev.id', '=', 'customers.id_developer')->get();
-
-            return view('admin.customer.index', [
-                'customer' => $customer
-            ]);
-        } else {
-            $customer = Customer::all();
-
-            return view('admin.customer.index', [
-                'customer' => $customer
-            ]);
-        }
+        return view('admin.customer.index', [
+            'customer' => $customer
+        ]);
     }
 
     /**
@@ -89,7 +79,6 @@ class CustomerController extends Controller
                 $customer->status           = 'Progress';
 
                 $customer->save();
-
             } catch (\Throwable $th) {
                 throw $th;
             }
@@ -154,13 +143,12 @@ class CustomerController extends Controller
             try {
                 Alert::success('success', 'Berhasil Edit Customer');
 
-                $customer = Customer::findOrFail($id);
-                $customer->nama_project  = $request->nama_project;
-                $customer->nama_customer = $request->nama_customer;
-                $customer->id_developer = $request->id_developer;
-                $customer->status = $request->status;
-                $customer->dana = $request->dana;
-                $customer->status = 'Progress';
+                $customer                   = Customer::findOrFail($id);
+                $customer->nama_project     = $request->nama_project;
+                $customer->nama_customer    = $request->nama_customer;
+                $customer->id_developer     = $request->id_developer;
+                $customer->status           = $request->status;
+                $customer->dana             = $request->dana;
 
                 $customer->save();
             } catch (\Throwable $th) {

@@ -39,6 +39,9 @@
                             @elseif($projek->status == 'Progress')
                                 <span class="text-warning"><i class='bx bx-task bx-sm'></i> Tahap
                                     {{ $projek->status }}</span>
+                            @elseif($projek->status == 'Development')
+                                <span class="text-info"><i class='bx bx-task bx-sm'></i> Tahap
+                                    {{ $projek->status }}</span>
                             @elseif($projek->status == 'Ditolak')
                                 <span class="text-danger"><i class='bx bx-task bx-sm'></i> Tahap
                                     {{ $projek->status }}</span>
@@ -77,7 +80,7 @@
                             <h4>Request Projek</h4>
                             <form action="{{ route('user.projek.store') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <input type="number" name="id_developer" value="0" hidden>
+                                <input type="number" name="id_developer" value="1" hidden>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group mt-4">
@@ -129,7 +132,7 @@
 
                             @if (!empty($history))
                                 @foreach ($history as $item)
-                                <hr>
+                                    <hr>
                                     <div class="row">
                                         <div class="col-md-4">
                                             <span><b>{{ $item->nama_project }}</b></span>
@@ -138,6 +141,9 @@
                                             @if ($item->status == 'Selesai')
                                                 <span class="text-success"> Projek
                                                     Selesai</span>
+                                            @elseif($item->status == 'Development')
+                                                <span class="text-info"> Projek
+                                                    Development</span>
                                             @elseif($item->status == 'Progress')
                                                 <span class="text-warning"> Projek
                                                     Sedang Progress</span>
@@ -491,10 +497,12 @@
                 reqProjek.style.display = 'block';
                 userStat.style.display = 'none';
                 konProjek.style.display = 'none';
+                hisProjek.style.display = 'none';
             });
         } else {
             userStat.style.display = 'block';
             konProjek.style.display = 'block';
+            hisProjek.style.display = 'block';
             reqProjek.style.display = 'none';
         }
 
@@ -503,10 +511,12 @@
                 userStat.style.display = 'block';
                 reqProjek.style.display = 'none';
                 konProjek.style.display = 'none';
+                hisProjek.style.display = 'none';
             });
         } else {
             reqProjek.style.display = 'block';
             konProjek.style.display = 'block';
+            hisProjek.style.display = 'block';
             userStat.style.display = 'none';
         }
 
@@ -515,10 +525,12 @@
                 konProjek.style.display = 'block';
                 reqProjek.style.display = 'none';
                 userStat.style.display = 'none';
+                hisProjek.style.display = 'none';
             });
         } else {
             reqProjek.style.display = 'block';
             userStat.style.display = 'block';
+            hisProjek.style.display = 'block';
             konProjek.style.display = 'none';
         }
 
