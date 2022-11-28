@@ -38,13 +38,15 @@ class HomeController extends Controller
             ]);
         } elseif (Auth::user()->role == 'user') {
 
-            $projek      = Customer::where('id_user', Auth::user()->id)->first();
-            $projekCount = Customer::where('id_user', Auth::user()->id)->where('status', 'Selesai')->get();
-            $countProjek = count($projekCount);
+            $projek         = Customer::where('id_user', Auth::user()->id)->first();
+            $projekCount    = Customer::where('id_user', Auth::user()->id)->where('status', 'Selesai')->get();
+            $countProjek    = count($projekCount);
+            $history        = Customer::where('id_user', Auth::user()->id)->get();
 
             return view('userView.index', [
-                'projek' => $projek,
-                'countProjek' => $countProjek
+                'projek'        => $projek,
+                'countProjek'   => $countProjek,
+                'history'       => $history
             ]);
         }
     }

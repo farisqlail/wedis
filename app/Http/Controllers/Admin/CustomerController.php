@@ -7,9 +7,11 @@ use App\Models\Customer;
 use App\Models\Developer;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
+use Snowfire\Beautymail\Beautymail;
 
 class CustomerController extends Controller
 {
@@ -87,6 +89,7 @@ class CustomerController extends Controller
                 $customer->status           = 'Progress';
 
                 $customer->save();
+
             } catch (\Throwable $th) {
                 throw $th;
             }

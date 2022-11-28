@@ -19,7 +19,7 @@
 
     <div class="card shadow rounded mt-4" style="border: none;">
         <div class="card-body">
-            <form action="{{ route('portfolio.update', $portfolio->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.portfolio.update', $portfolio->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-group">

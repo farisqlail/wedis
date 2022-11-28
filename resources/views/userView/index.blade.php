@@ -58,7 +58,7 @@
                                 style="text-decoration: none;">Dashboard</a></li>
                         <li class="list-group-item" id="req"><a href="#Request-Projek" class="text-dark"
                                 style="text-decoration: none;">Request Projek</a></li>
-                        <li class="list-group-item" id="listPro"><a href="#List-Projek" class="text-dark"
+                        <li class="list-group-item" id="history"><a href="#List-Projek" class="text-dark"
                                 style="text-decoration: none;">Projek Ku</a></li>
                         <li class="list-group-item" id="kontrak"><a href="#Kontrak-projek" class="text-dark"
                                 style="text-decoration: none;">Invoice Projek</a></li>
@@ -124,6 +124,39 @@
                             </div>
                         </div>
 
+                        <div id="historyProjek">
+                            <h4>History Projek kamu</h4>
+
+                            @if (!empty($history))
+                                @foreach ($history as $item)
+                                <hr>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <span><b>{{ $item->nama_project }}</b></span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            @if ($item->status == 'Selesai')
+                                                <span class="text-success"> Projek
+                                                    Selesai</span>
+                                            @elseif($item->status == 'Progress')
+                                                <span class="text-warning"> Projek
+                                                    Sedang Progress</span>
+                                            @elseif($item->status == 'Ditolak')
+                                                <span class="text-danger"> Projek
+                                                    Ditolak</span>
+                                            @endif
+                                        </div>
+                                        <div class="col-md-4">
+                                            <span class="text-muted"><i>{{ $item->created_at->diffForHumans() }}</i></span>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="mt-3" align="center">
+                                    <span>Belum ada projek</span>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
@@ -448,8 +481,10 @@
         var btnReq = document.getElementById('req');
         var btnDash = document.getElementById('dash');
         var btnKon = document.getElementById('kontrak');
+        var btnHis = document.getElementById('history');
         var reqProjek = document.getElementById('requestProjek')
         var konProjek = document.getElementById('kontrakProjek');
+        var hisProjek = document.getElementById('historyProjek');
 
         if (reqProjek.style.display = 'none') {
             btnReq.addEventListener('click', function() {
@@ -485,6 +520,20 @@
             reqProjek.style.display = 'block';
             userStat.style.display = 'block';
             konProjek.style.display = 'none';
+        }
+
+        if (hisProjek.style.display = 'none') {
+            btnHis.addEventListener('click', function() {
+                hisProjek.style.display = 'block';
+                konProjek.style.display = 'none';
+                reqProjek.style.display = 'none';
+                userStat.style.display = 'none';
+            });
+        } else {
+            reqProjek.style.display = 'block';
+            userStat.style.display = 'block';
+            konProjek.style.display = 'block';
+            hisProjek.style.display = 'none';
         }
     </script>
 @endpush

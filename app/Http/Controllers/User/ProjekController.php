@@ -70,6 +70,23 @@ class ProjekController extends Controller
                 $customer->kategori         = $request->kategori;
                 $customer->status           = 'Progress';
 
+                $dataCustomer = Auth::user();
+                $beautymail = app()->make(\Snowfire\Beautymail\Beautymail::class);
+                $beautymail->send('email.user.requestProjek', ['data' => $dataCustomer], function ($message) use ($dataCustomer) {
+                    $message
+                        ->from('wedisdotco@gmail.com')
+                        ->to($dataCustomer->email, $dataCustomer->name)
+                        ->subject('Request projek kamu sudah masuk, tunggu informasi selanjutnya');
+                });
+
+                $beautymail = app()->make(\Snowfire\Beautymail\Beautymail::class);
+                $beautymail->send('email.admin.requestProjekCheck', ['data' => $dataCustomer], function ($message) use ($dataCustomer) {
+                    $message
+                        ->from('wedisdotco@gmail.com')
+                        ->to('wedisdotco@gmail.com')
+                        ->subject('Ada request projek masuk nih!'. ' Dari' . $dataCustomer->name);
+                });
+
                 $customer->save();
             } catch (\Throwable $th) {
                 throw $th;
