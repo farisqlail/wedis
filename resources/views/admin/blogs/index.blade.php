@@ -33,7 +33,7 @@
                                 <td>{{ $item->title }}</td>
                                 <td>{!! \Illuminate\Support\Str::limit($item->description, 50) !!}</td>
                                 <td>
-                                    <img src="{{ asset('storage/blogs/' . $item->image) }}" class="img-fluid">
+                                    <img src="{{ asset('storage/' . $item->image) }}" class="img-fluid" width="100">
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.blog.edit', $item->id) }}" class="btn btn-warning"><i class="fas fa-pen"></i></a>

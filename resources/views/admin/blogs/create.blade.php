@@ -10,7 +10,7 @@
             <h1 class="h3 mb-0 text-gray-800">Halaman Artikel</h1>
         </div>
         <div class="col-md-6" align="right">
-            <a href="{{ route('blog.admin') }}" class="btn btn-danger">
+            <a href="{{ route('admin.blog.admin') }}" class="btn btn-danger">
                 <i class="fas fa-arrow-left"></i>
                 Kembali
             </a>
